@@ -1,0 +1,3132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Đại Thư Viện Bot Sòng Bạc & Kinh Tế VNĐ v3.0 (Toàn Tập A-Z)</title>
+    
+    <!-- Meta SEO & Social Sharing (Vercel & Discord Embed) -->
+    <meta name="description" content="Cẩm nang toàn thư 224 lệnh Bot Kinh Tế & Sòng Bạc VNĐ v3.0: Bảng tỷ lệ toán học, luật chơi, 5 việc làm gạt nợ, vụ cướp ngân hàng và 125 lệnh quản trị Owner.">
+    <meta property="og:title" content="Đại Thư Viện Bot Sòng Bạc & Kinh Tế VNĐ v3.0">
+    <meta property="og:description" content="Tra cứu toàn bộ 224 lệnh, tỷ lệ thắng thua, hướng dẫn cách chơi và luật vận hành.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#f59e0b">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #0b0d13;
+            --bg-surface: #121622;
+            --bg-card: #181d2d;
+            --bg-card-hover: #1f253a;
+            --bg-glass: rgba(18, 22, 34, 0.9);
+            --border: #262e45;
+            --border-hover: #3b4668;
+            --text-main: #f0f3fa;
+            --text-muted: #8e9bb5;
+            --text-dim: #5c6882;
+            
+            --gold: #f59e0b;
+            --gold-glow: rgba(245, 158, 11, 0.25);
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.25);
+            --ruby: #ef4444;
+            --ruby-glow: rgba(239, 68, 68, 0.25);
+            --sapphire: #3b82f6;
+            --sapphire-glow: rgba(59, 130, 246, 0.25);
+            --amethyst: #8b5cf6;
+            --amethyst-glow: rgba(139, 92, 246, 0.25);
+            --cyan: #06b6d4;
+            --cyan-glow: rgba(6, 182, 212, 0.25);
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* ================= DESKTOP SIDEBAR ================= */
+        .sidebar {
+            width: 290px;
+            height: 100vh;
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 20px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-logo {
+            font-size: 26px;
+            background: var(--gold-glow);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+        }
+
+        .sidebar-title h1 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-title span {
+            font-size: 11px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* VIEW MODE SWITCHER */
+        .mode-switcher-bar {
+            padding: 10px 18px;
+            background: rgba(0,0,0,0.25);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .mode-label {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .mode-btn-group {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .mode-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 9px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .mode-btn.active {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .sidebar-search-box {
+            padding: 14px 18px 8px;
+        }
+
+        .sidebar-search-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 9px 12px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .sidebar-search-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px var(--gold-glow);
+        }
+
+        .nav-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+            padding: 8px 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.15s;
+            margin-bottom: 3px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--bg-card);
+            color: #fff;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-weight: 700;
+        }
+
+        /* ================= MOBILE STICKY HEADER ================= */
+        .mobile-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 13, 19, 0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 14px 6px;
+        }
+
+        .mobile-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .mobile-header-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mobile-header-logo {
+            font-size: 22px;
+            background: rgba(245, 158, 11, 0.15);
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+        }
+
+        .mobile-header-title h1 {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .mobile-header-title span {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .mobile-search-box {
+            position: relative;
+            margin: 8px 0 6px;
+        }
+
+        .mobile-search-input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 9px 36px 9px 12px;
+            color: #fff;
+            font-size: 13.5px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .mobile-search-clear {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px;
+            display: none;
+        }
+
+        .category-carousel {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 6px 0 6px;
+            scrollbar-width: none;
+        }
+
+        .category-carousel::-webkit-scrollbar { display: none; }
+
+        .category-pill {
+            flex: 0 0 auto;
+            padding: 5px 11px;
+            border-radius: 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 11.5px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.15s;
+        }
+
+        .category-pill:active, .category-pill.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        /* ================= HERO BANNER ================= */
+        .hero {
+            background: linear-gradient(135deg, rgba(24, 29, 45, 0.95), rgba(18, 22, 34, 0.95));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold);
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: clamp(18px, 3vw, 26px);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .stat-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stat-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: clamp(17px, 2.5vw, 22px);
+            font-weight: 800;
+            color: var(--gold);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            font-size: 10.5px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* ================= SECTIONS & CARDS ================= */
+        .section-wrap {
+            margin-bottom: 40px;
+            scroll-margin-top: 140px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-badge {
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--sapphire);
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .cmd-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+            transition: border-color 0.2s;
+        }
+
+        .cmd-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .cmd-top {
+            padding: 14px 18px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cmd-title-area h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.35;
+        }
+
+        .cmd-alias {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--gold);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+
+        .cmd-desc {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .cmd-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .tag-casino { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
+        .tag-debt { background: rgba(239, 68, 68, 0.15); color: var(--ruby); }
+        .tag-eco { background: rgba(16, 185, 129, 0.15); color: var(--emerald); }
+        .tag-job { background: rgba(6, 182, 212, 0.15); color: var(--cyan); }
+        .tag-heist { background: rgba(139, 92, 246, 0.15); color: var(--amethyst); }
+        .tag-owner { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+        /* SYNTAX & 1-TAP COPY */
+        .syntax-box {
+            background: #0f121d;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .syntax-code {
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            color: var(--gold);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+
+        .syntax-code::-webkit-scrollbar { display: none; }
+
+        .copy-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .copy-btn:active {
+            background: var(--gold);
+            color: #000;
+            transform: scale(0.95);
+        }
+
+        .guide-box h4, .preview-box h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .step-item {
+            font-size: 13px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 14px;
+            color: #dbdee1;
+        }
+
+        .step-item::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* DISCORD MOCKUP */
+        .discord-mockup {
+            background: #2b2d31;
+            border-radius: 8px;
+            padding: 12px 14px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-top: 4px;
+        }
+
+        .discord-mockup.ruby { border-left-color: var(--ruby); }
+        .discord-mockup.emerald { border-left-color: var(--emerald); }
+        .discord-mockup.cyan { border-left-color: var(--cyan); }
+        .discord-mockup.amethyst { border-left-color: var(--amethyst); }
+
+        .discord-bot-header {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 8px;
+        }
+
+        .discord-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .discord-name {
+            font-weight: 700;
+            color: #fff;
+            font-size: 12.5px;
+        }
+
+        .discord-app-tag {
+            background: #5865f2;
+            color: #fff;
+            font-size: 8.5px;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .discord-title {
+            font-weight: 800;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .discord-desc {
+            font-size: 12.5px;
+            line-height: 1.5;
+            color: #dbdee1;
+            white-space: pre-line;
+            word-break: break-word;
+        }
+
+        /* DATA TABLES */
+        .data-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            margin: 12px 0;
+            background: var(--bg-surface);
+        }
+
+        .table-swipe-hint {
+            display: block;
+            text-align: right;
+            font-size: 10.5px;
+            color: var(--gold);
+            padding: 4px 10px;
+            font-weight: 600;
+            background: rgba(245, 158, 11, 0.05);
+            border-bottom: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 500px;
+        }
+
+        th {
+            background: #151a28;
+            padding: 10px 14px;
+            font-weight: 700;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+            vertical-align: top;
+        }
+
+        .cell-mono {
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .cell-badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 10.5px;
+            font-weight: 700;
+        }
+
+        .badge-win { background: rgba(16, 185, 129, 0.15); color: var(--emerald); }
+        .badge-draw { background: rgba(59, 130, 246, 0.15); color: var(--sapphire); }
+        .badge-lose { background: rgba(239, 68, 68, 0.15); color: var(--ruby); }
+        .badge-gold { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
+
+        /* ALERTS */
+        .alert-box {
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            margin: 14px 0;
+            font-size: 13px;
+            line-height: 1.5;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .alert-info { background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); color: #93c5fd; }
+        .alert-warning { background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); color: #fde68a; }
+        .alert-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); color: #fca5a5; }
+
+        /* FILTER BUTTONS */
+        .filter-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+
+        .filter-btn {
+            flex: 0 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        /* MOBILE CARDS IN CHEAT SHEET */
+        .mobile-cheat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .mobile-cheat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .mobile-cheat-cmd {
+            font-family: var(--font-mono);
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .mobile-cheat-badges {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mobile-cheat-copy {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 4px 9px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .mobile-cheat-copy:active {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .mobile-cheat-aliases {
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            margin-bottom: 6px;
+        }
+
+        .mobile-cheat-desc {
+            font-size: 12.5px;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* BOTTOM NAV BAR */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(14, 18, 28, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 9999;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 9.5px;
+            font-weight: 700;
+            gap: 3px;
+            flex: 1;
+            padding: 6px 0;
+            transition: all 0.15s;
+        }
+
+        .bottom-nav-item .icon { font-size: 18px; }
+        .bottom-nav-item.active, .bottom-nav-item:active { color: var(--gold); }
+
+        /* FAB TOP */
+        .fab-top {
+            position: fixed;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+            font-size: 18px;
+            font-weight: 800;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9998;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #10b981;
+            color: #000;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* ================= RESPONSIVE MEDIA QUERIES ================= */
+        /* DESKTOP ( >= 901px ) */
+        @media (min-width: 901px) {
+            .sidebar { display: flex; }
+            .mobile-header { display: none; }
+            .mobile-bottom-nav { display: none; }
+            .main-content {
+                margin-left: 290px;
+                padding: 32px 40px;
+                max-width: 1350px;
+            }
+            .cmd-body {
+                display: grid;
+                grid-template-columns: 1.25fr 1fr;
+                gap: 20px;
+                padding: 16px 18px;
+            }
+            .stat-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .fab-top {
+                bottom: 24px;
+                right: 24px;
+            }
+            .toast {
+                bottom: 30px;
+            }
+            #cheatSheetTableWrap {
+                display: block;
+            }
+            #mobileCheatCardsWrap {
+                display: none;
+            }
+        }
+
+        /* MOBILE ( <= 900px ) */
+        @media (max-width: 900px) {
+            .sidebar { display: none; }
+            .mobile-header { display: block; }
+            .mobile-bottom-nav { display: flex; }
+            .main-content {
+                margin-left: 0;
+                padding: 12px 14px 95px;
+                max-width: 100%;
+            }
+            .cmd-body {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px;
+                padding: 12px 14px;
+            }
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .fab-top {
+                bottom: 74px;
+                right: 14px;
+            }
+            .toast {
+                bottom: 78px;
+            }
+            #cheatSheetTableWrap {
+                display: none;
+            }
+            #mobileCheatCardsWrap {
+                display: block;
+            }
+        }
+
+        /* FORCED MOBILE MODE (WHEN USER TOGGLES ON DESKTOP) */
+        body.force-mobile .sidebar { display: none !important; }
+        body.force-mobile .mobile-header { display: block !important; }
+        body.force-mobile .mobile-bottom-nav { display: flex !important; }
+        body.force-mobile .main-content {
+            margin: 0 auto !important;
+            max-width: 560px !important;
+            padding: 12px 14px 95px !important;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            background: var(--bg-base);
+        }
+        body.force-mobile .cmd-body { display: flex !important; flex-direction: column !important; }
+        body.force-mobile .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        body.force-mobile #cheatSheetTableWrap { display: none !important; }
+        body.force-mobile #mobileCheatCardsWrap { display: block !important; }
+        body.force-mobile .fab-top { bottom: 74px !important; right: calc(50% - 260px) !important; }
+
+        /* FORCED DESKTOP MODE (WHEN USER TOGGLES ON PHONE) */
+        body.force-desktop .sidebar { display: flex !important; }
+        body.force-desktop .mobile-header { display: none !important; }
+        body.force-desktop .mobile-bottom-nav { display: none !important; }
+        body.force-desktop .main-content {
+            margin-left: 290px !important;
+            padding: 32px 40px !important;
+            min-width: 800px !important;
+        }
+        body.force-desktop .cmd-body { display: grid !important; grid-template-columns: 1.25fr 1fr !important; }
+        body.force-desktop .stat-grid { grid-template-columns: repeat(5, 1fr) !important; }
+        body.force-desktop #cheatSheetTableWrap { display: block !important; }
+        body.force-desktop #mobileCheatCardsWrap { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- ================= DESKTOP SIDEBAR ================= -->
+    <aside class="sidebar" id="desktopSidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">🎰</div>
+            <div class="sidebar-title">
+                <h1>SÒNG BẠC VNĐ v3.0</h1>
+                <span>TOÀN THƯ TỪ A ĐẾN Z</span>
+            </div>
+        </div>
+
+        <!-- MODE SWITCHER -->
+        <div class="mode-switcher-bar">
+            <span class="mode-label">Chế độ xem:</span>
+            <div class="mode-btn-group">
+                <button class="mode-btn active" id="btnModeAuto" onclick="switchViewMode('auto')">Auto</button>
+                <button class="mode-btn" id="btnModeDesktop" onclick="switchViewMode('desktop')">🖥️ PC</button>
+                <button class="mode-btn" id="btnModeMobile" onclick="switchViewMode('mobile')">📱 Mobile</button>
+            </div>
+        </div>
+
+        <div class="sidebar-search-box">
+            <input type="text" id="desktopSearchInput" class="sidebar-search-input" placeholder="🔍 Tìm nhanh 224 lệnh, tỷ lệ...">
+        </div>
+
+        <ul class="nav-list" id="navList">
+            <li><a href="#sec-overview" class="nav-link"><span class="icon">🌟</span> 1. Triết Lý & Luật Chung <span class="nav-badge">CORE</span></a></li>
+            <li><a href="#sec-casino" class="nav-link"><span class="icon">🎲</span> 2. Sòng Bạc Casino <span class="nav-badge">12 LỆNH</span></a></li>
+            <li><a href="#sec-economy" class="nav-link"><span class="icon">💰</span> 3. Tiền Tệ & Ngân Hàng <span class="nav-badge">15 LỆNH</span></a></li>
+            <li><a href="#sec-debt" class="nav-link"><span class="icon">💳</span> 4. 5 Việc Làm Gạt Nợ <span class="nav-badge">5 JOBS</span></a></li>
+            <li><a href="#sec-labor" class="nav-link"><span class="icon">👷</span> 5. Lao Động & Tù Tội <span class="nav-badge">24 LỆNH</span></a></li>
+            <li><a href="#sec-heist" class="nav-link"><span class="icon">💣</span> 6. Cướp Bank & Bẻ Khóa <span class="nav-badge">11 LỆNH</span></a></li>
+            <li><a href="#sec-pvp" class="nav-link"><span class="icon">⚔️</span> 7. PvP Solo & Boss Thế Giới <span class="nav-badge">11 LỆNH</span></a></li>
+            <li><a href="#sec-shop" class="nav-link"><span class="icon">🛒</span> 8. Cửa Hàng & Kho Đồ <span class="nav-badge">11 LỆNH</span></a></li>
+            <li><a href="#sec-owner" class="nav-link"><span class="icon">👑</span> 9. Bộ Lệnh Quản Trị Owner <span class="nav-badge">125 LỆNH</span></a></li>
+            <li><a href="#sec-easteregg" class="nav-link"><span class="icon">🎭</span> 10. Easter Egg Bí Mật <span class="nav-badge">SECRET</span></a></li>
+            <li><a href="#sec-cheatsheet" class="nav-link"><span class="icon">📑</span> 11. Bảng Tra 224 Lệnh <span class="nav-badge">224 ALL</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- ================= MOBILE STICKY HEADER ================= -->
+    <header class="mobile-header" id="mobileHeader">
+        <div class="mobile-header-top">
+            <div class="mobile-header-brand">
+                <div class="mobile-header-logo">🎰</div>
+                <div class="mobile-header-title">
+                    <h1>SÒNG BẠC VNĐ</h1>
+                    <span>ĐẠI THƯ VIỆN TOÀN TẬP</span>
+                </div>
+            </div>
+            <div class="mode-btn-group">
+                <button class="mode-btn active" id="btnMobAuto" onclick="switchViewMode('auto')">Auto</button>
+                <button class="mode-btn" id="btnMobDesktop" onclick="switchViewMode('desktop')">🖥️</button>
+                <button class="mode-btn" id="btnMobMobile" onclick="switchViewMode('mobile')">📱</button>
+            </div>
+        </div>
+
+        <div class="mobile-search-box">
+            <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="🔍 Tìm nhanh lệnh, tỷ lệ, hướng dẫn...">
+            <button id="mobileSearchClear" class="mobile-search-clear">✕</button>
+        </div>
+
+        <div class="category-carousel" id="catCarousel">
+            <a href="#sec-overview" class="category-pill active">🌟 Chung</a>
+            <a href="#sec-casino" class="category-pill">🎲 Casino</a>
+            <a href="#sec-economy" class="category-pill">💰 Bank</a>
+            <a href="#sec-debt" class="category-pill">💳 Gạt Nợ</a>
+            <a href="#sec-labor" class="category-pill">👷 Việc Làm</a>
+            <a href="#sec-heist" class="category-pill">💣 Cướp Bank</a>
+            <a href="#sec-pvp" class="category-pill">⚔️ PvP & Boss</a>
+            <a href="#sec-shop" class="category-pill">🛒 Cửa Hàng</a>
+            <a href="#sec-owner" class="category-pill">👑 Owner</a>
+            <a href="#sec-easteregg" class="category-pill">🎭 Bí Mật</a>
+            <a href="#sec-cheatsheet" class="category-pill">📑 224 Lệnh</a>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- HERO HEADER -->
+        <header class="hero">
+            <div class="hero-tag">🔥 TÀI LIỆU VẬN HÀNH CHÍNH THỨC • CẬP NHẬT MỚI NHẤT</div>
+            <h2>ĐẠI THƯ VIỆN TOÀN TẬP BOT KINH TẾ & SÒNG BẠC VNĐ</h2>
+            <p>Khám phá toàn bộ 100% cơ chế vận hành từ A đến Z: Bảng tỷ lệ toán học chuẩn xác, hướng dẫn chơi từng bước, luật trừng phạt nợ, hệ thống cướp ngân hàng 5 phân vai, cơ chế chống clone farm tiền và danh mục chi tiết 125 lệnh quản trị Owner!</p>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-val">224</div>
+                    <div class="stat-label">Tổng Số Lệnh Vận Hành</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">13</div>
+                    <div class="stat-label">Phân Hệ Chức Năng</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">100.000.000đ</div>
+                    <div class="stat-label">Giải Cướp Bank Kỷ Lục</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">00:00</div>
+                    <div class="stat-label">Reset Hàng Ngày (UTC+7)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">0đ</div>
+                    <div class="stat-label">Nợ Bát Họ (Đã Bãi Bỏ)</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ================= SECTION 1: TRIẾT LÝ & CƠ CHẾ CỐT LÕI ================= -->
+        <section id="sec-overview" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>🌟</span> PHẦN 1: TRIẾT LÝ KINH TẾ, LUẬT CHƠI & CƠ CHẾ CỐT LÕI</div>
+                <span class="section-badge">CORE SYSTEM RULES</span>
+            </div>
+
+            <div class="alert-box alert-info">
+                <span>📌</span>
+                <div>
+                    <strong>Đơn vị tiền tệ chính: VNĐ (Việt Nam Đồng).</strong> Toàn bộ số dư được lưu trữ an toàn trong cơ sở dữ liệu phân tầng kép, tự động sao lưu định kỳ mỗi 6 giờ và kiểm tra tính toàn vẹn thời gian thực.
+                </div>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>⚙️ 6 Cơ Chế Cốt Lõi Vận Hành Toàn Hệ Thống</h3>
+                        <div class="cmd-desc">Những quy tắc bắt buộc chi phối mọi giao dịch, trò chơi và tài khoản của người chơi</div>
+                    </div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="data-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cơ Chế</th>
+                                    <th>Thời Gian / Giới Hạn</th>
+                                    <th>Chi Tiết Cách Thức Hoạt Động & Hậu Quả</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Khóa Chống Đua Lệnh (Financial Mutex Lock)</strong></td>
+                                    <td><span class="cell-mono">Thời gian thực</span></td>
+                                    <td>Khi người chơi đang thực hiện bất kỳ lệnh tài chính nào (chuyển tiền, cược casino, mua bán, cướp két, gán nợ), hệ thống lập tức khóa ví lại. Nếu cố tình spam nhiều lệnh cùng 1 tích tắc, bot lập tức từ chối và cảnh báo để chống duplicate money.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Hồi Chiêu Chống Spam Lệnh (Spam Cooldown)</strong></td>
+                                    <td><span class="cell-mono">5 giây / lệnh</span></td>
+                                    <td>Áp dụng cho tất cả người chơi thông thường. Mỗi lệnh cách nhau 5 giây. Owner và các lệnh khẩn cấp trong tù (<code>!tu</code>, <code>!caitao</code>, <code>!help</code>) được miễn trừ hồi chiêu này.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Ca Reset Nửa Đêm (Midnight Scheduler 00:00)</strong></td>
+                                    <td><span class="cell-mono">00:00 (UTC+7 VN)</span></td>
+                                    <td>Đúng 00:00 đêm mỗi ngày, hệ thống tự động:
+                                        <br>• Trả lãi Sổ Tiết Kiệm: <strong>2%/ngày</strong> (tối đa 200.000 VNĐ/ngày).
+                                        <br>• Reset hạn mức nhặt ve chai: 15 lần/ngày.
+                                        <br>• Reset hạn mức bẻ khóa két: 4 lần/ngày.
+                                        <br>• Đếm ngày quá hạn nợ ngân hàng để phạt cộng +200k/ngày (nếu quá 5 ngày).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Hệ Thống Chống Farm Clone (Anti-Clone System)</strong></td>
+                                    <td><span class="cell-mono">Tự động + Owner</span></td>
+                                    <td>Quy định khắt khe chống tạo clone tuồn tiền:
+                                        <br>• <strong>Hạn mức nhận tiền:</strong> Mỗi người nhận chỉ được nhận tiền chuyển khoản từ tối đa <strong>2 người gửi khác nhau mỗi ngày</strong>.
+                                        <br>• <strong>Hạn mức gửi tiền:</strong> Tài khoản có số dư ví dưới 50.000 VNĐ không thể thực hiện lệnh chuyển khoản <code>!pay</code>.
+                                        <br>• <strong>Khóa Clone:</strong> Owner có lệnh <code>!camclone @user [lý_do]</code> để khóa vĩnh viễn tài khoản clone, chặn khỏi 20+ lệnh kiếm tiền & casino.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Quy Tắc Trừng Phạt Con Nợ (> 10.000.000 VNĐ)</strong></td>
+                                    <td><span class="cell-mono">user.debt > 10M</span></td>
+                                    <td>Nếu để nợ Ngân Hàng vượt quá 10 Triệu VNĐ:
+                                        <br>• Ép biệt danh bắt buộc thành <code>[Con Nợ]</code>.
+                                        <br>• Bị giới hạn cược Casino: Tối đa <strong>1.000.000 VNĐ/ván</strong>.
+                                        <br>• <strong>Khấu trừ thu nhập:</strong> Mọi khoản tiền kiếm được (làm việc, trộm cắp) bị tự động trích thu <strong>40%</strong> để cấn trừ nợ.
+                                        <br>• <strong>Cưỡng chế siết nợ:</strong> Mỗi ca nửa đêm tự động siết 25% Sổ Tiết Kiệm để trừ nợ!</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Khóa Sốc Casino Tilt Lock (Anti-Tilt)</strong></td>
+                                    <td><span class="cell-mono">15 - 30 phút</span></td>
+                                    <td>Nếu người chơi thua cháy túi liên tục trong thời gian ngắn, hệ thống kích hoạt khóa chống cay cú, tạm thời đình chỉ đánh bạc để bảo vệ tâm lý người chơi.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: SÒNG BẠC CASINO CỰC ĐOAN ================= -->
+        <section id="sec-casino" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>🎲</span> PHẦN 2: SÒNG BẠC CASINO CỰC ĐOAN (BẢNG TỶ LỆ & CÁCH CHƠI)</div>
+                <span class="section-badge">12 CASINO GAMES</span>
+            </div>
+
+            <div class="alert-box alert-warning">
+                <span>⚠️</span>
+                <div>
+                    <strong>CƠ CHẾ NHÀ CÁI ĐỘC QUYỀN (CHAOS ENGINE & PVE DRAIN):</strong>
+                    <br>Tất cả các trò chơi casino PvE được vận hành bởi động cơ ngẫu nhiên kết hợp thuật toán bảo toàn quỹ sòng bạc. Khi người chơi chuỗi thắng lớn, sòng bạc sẽ tự động tăng nhẹ độ khó để thử thách bản lĩnh con bạc!
+                </div>
+            </div>
+
+            <!-- 1. TÀI XỈU -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎲 1. Tài Xỉu Đổ Xúc Xắc <span class="cmd-alias">!taixiu</span> <span class="cmd-alias">!tx</span></h3>
+                        <div class="cmd-desc">Trò chơi lắc 3 viên xúc xắc dân gian kinh điển với cơ chế nổ Bão kịch tính</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Casino</span>
+                        <span class="tag tag-casino">Ăn x2.0</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!taixiu &lt;tai | xiu&gt; &lt;số_tiền | all&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!taixiu tai 100k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cách chơi:</strong> Lắc 3 viên xúc xắc 6 mặt (tổng điểm từ 3 đến 18). Dự đoán đặt cửa <strong>Tài</strong> hoặc <strong>Xỉu</strong>.</li>
+                            <li class="step-item"><strong>Cửa Xỉu:</strong> Tổng điểm từ <strong>3 đến 10</strong>.</li>
+                            <li class="step-item"><strong>Cửa Tài:</strong> Tổng điểm từ <strong>11 đến 18</strong>.</li>
+                            <li class="step-item"><strong>Cơ chế Bão (3 xúc xắc giống nhau, vd 1-1-1, 6-6-6):</strong> Tỷ lệ xuất hiện <strong>3.0%</strong>. Khi Bão nổ, Nhà Cái ăn trọn cả 2 cửa Tài và Xỉu (nhưng có bố thí hoàn trả an ủi 10% tiền cược).</li>
+                            <li class="step-item"><strong>Tỷ lệ thắng người chơi:</strong> <strong>48.5%</strong>. Thưởng: <strong>x2.0</strong> tiền cược (lãi 100%).</li>
+                        </ul>
+                        <div class="meta-pills">
+                            <span class="meta-pill">Tỷ lệ thắng: <strong>48.5%</strong></span>
+                            <span class="meta-pill">Tỷ lệ Bão: <strong>3.0%</strong></span>
+                            <span class="meta-pill">Cược tối thiểu: <strong>1.000đ</strong></span>
+                            <span class="meta-pill">Nợ >10tr cược max: <strong>1.000.000đ</strong></span>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🎲 KẾT QUẢ TÀI XỈU: [ 4 - 6 - 5 ] ➔ 15 ĐIỂM (TÀI)</div>
+                            <div class="discord-desc">👤 Con bạc: &lt;@User&gt;
+🎯 Cửa cược: **TÀI** — 💵 Cược: **500.000 VNĐ**
+🎉 **THẮNG ĐẬM:** Nhận về **+1.000.000 VNĐ** (Lãi: **+500.000 VNĐ**)
+💰 Số dư ví hiện tại: **5.500.000 VNĐ**
+<span class="discord-taunt">"Húp ngọt bát Tài Xỉu! May mắn đấy con chó, ván sau nhớ nộp lại cả cụm nhé con nghiện!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. BẦU CUA -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🦀 2. Bầu Cua Tôm Cá <span class="cmd-alias">!baucua</span> <span class="cmd-alias">!bc</span></h3>
+                        <div class="cmd-desc">Lắc 3 xúc xắc linh vật cổ truyền, ăn theo số lượng mặt xúc xắc xuất hiện</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Casino</span>
+                        <span class="tag tag-casino">Ăn x2 - x4</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!baucua &lt;bau | cua | tom | ca | ga | nai&gt; &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!baucua cua 50k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>6 Linh vật:</strong> 🍐 Bầu, 🦀 Cua, 🦐 Tôm, 🐟 Cá, 🐓 Gà, 🦌 Nai.</li>
+                            <li class="step-item"><strong>Cách tính thưởng:</strong>
+                                <br>• Ra 1 con trúng: Nhận <strong>x2.0</strong> (Hoàn vốn + thưởng x1 cược).
+                                <br>• Ra 2 con trúng: Nhận <strong>x3.0</strong> (Hoàn vốn + thưởng x2 cược).
+                                <br>• Ra 3 con trúng (Tam hoa): Nhận <strong>x4.0</strong> (Hoàn vốn + thưởng x3 cược).
+                            </li>
+                            <li class="step-item"><strong>Không ra con nào:</strong> Thua trắng toàn bộ tiền cược.</li>
+                        </ul>
+                        <div class="meta-pills">
+                            <span class="meta-pill">Xác suất trúng ít nhất 1 con: <strong>42.1%</strong></span>
+                            <span class="meta-pill">Tam hoa x4: <strong>0.46%</strong></span>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🦀 KẾT QUẢ BẦU CUA: [ 🦀 Cua | 🦀 Cua | 🐟 Cá ]</div>
+                            <div class="discord-desc">👤 Con bạc: &lt;@User&gt;
+🎯 Đặt cược: **CUA** (200.000 VNĐ)
+🔥 **TRÚNG ĐÚP 2 CON CUA:** Nhận về **+600.000 VNĐ** (Lãi: **+400.000 VNĐ**)
+💰 Số dư ví hiện tại: **1.200.000 VNĐ**
+<span class="discord-taunt">"Đớp được 2 con Cua to tổ bố! Lần này thần rùa nhập chứ trình cái l#n gì!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. MÁY XÈNG SLOT -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎰 3. Máy Xèng Nổ Hũ Slot <span class="cmd-alias">!slot</span> <span class="cmd-alias">!quay</span></h3>
+                        <div class="cmd-desc">Máy quay xèng 3 ô kinh điển với tỷ lệ cặp 2 hình và Jackpot chuẩn hóa</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Casino</span>
+                        <span class="tag tag-casino">Ăn x1.5 - x10</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!slot &lt;số_tiền | all&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!slot 100k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học (Cấu Hình Cố Định)</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Biểu tượng:</strong> 🍒 Cherry, 🍋 Chanh, 🍇 Nho, 🔔 Chuông Vàng, ⭐ Ngôi Sao, 💎 Kim Cương, 👑 Vương Miện.</li>
+                            <li class="step-item"><strong>Cặp 2 hình giống nhau:</strong> Tỷ lệ <strong>35.0%</strong> ➔ Thưởng <strong>x1.5</strong> tiền cược (Lãi 50%).</li>
+                            <li class="step-item"><strong>3 hình giống nhau (Triple):</strong> Tỷ lệ <strong>3.5%</strong> ➔ Thưởng <strong>x5.0</strong> tiền cược (Lãi 400%).</li>
+                            <li class="step-item"><strong>Jackpot Tam Quý (💎💎💎 hoặc 👑👑👑):</strong> Tỷ lệ <strong>0.8%</strong> ➔ Thưởng <strong>x10.0</strong> tiền cược (Lãi 900%)!</li>
+                            <li class="step-item"><strong>Thua (3 hình rời rạc):</strong> Tỷ lệ <strong>60.7%</strong> ➔ Mất trắng tiền cược.</li>
+                        </ul>
+                        <div class="meta-pills">
+                            <span class="meta-pill">Tổng tỷ lệ trúng thưởng: <strong>39.3%</strong></span>
+                            <span class="meta-pill">Tỷ lệ Cặp: <strong>35.0%</strong></span>
+                            <span class="meta-pill">Tỷ lệ Triple: <strong>3.5%</strong></span>
+                            <span class="meta-pill">Tỷ lệ Jackpot: <strong>0.8%</strong></span>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup gold">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🎰 MÁY XÈNG: [ 💎 | 💎 | 🔔 ] — CẶP ĐÔI!</div>
+                            <div class="discord-desc">👤 Con bạc: &lt;@User&gt;
+💵 Cược: **200.000 VNĐ**
+✨ **TRÚNG CẶP 2 HÌNH (35%):** Thưởng **x1.5** ➔ Nhận về **+300.000 VNĐ** (Lãi: **+100.000 VNĐ**)
+💰 Số dư ví: **1.500.000 VNĐ**
+<span class="discord-taunt">"Được 2 viên đá quý, sòng nhả cho tí phế gặm tạm đấy!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. COINFLIP -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🪙 4. Tung Đồng Xu Coinflip <span class="cmd-alias">!coinflip</span> <span class="cmd-alias">!cf</span></h3>
+                        <div class="cmd-desc">Tung đồng xu Sấp hoặc Ngửa 50/50 ăn gấp đôi tiền cược</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Casino</span>
+                        <span class="tag tag-casino">Ăn x2.0</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!coinflip &lt;sap | ngua&gt; &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!coinflip sap 100k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cách chơi:</strong> Chọn mặt <strong>Sấp (sap)</strong> hoặc <strong>Ngửa (ngua)</strong>.</li>
+                            <li class="step-item"><strong>Tỷ lệ thắng:</strong> Chuẩn <strong>49.0%</strong> (Nhà cái giữ phế sàn 1%).</li>
+                            <li class="step-item"><strong>Thưởng:</strong> Thắng ăn <strong>x2.0</strong> tiền cược (nhận lại vốn + tiền lãi tương đương).</li>
+                            <li class="step-item"><strong>Bùa hỗ trợ:</strong> Trang bị <code>#1 Bùa May Mắn</code> tăng tỷ lệ thắng cho ván lật tiếp theo.</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🪙 ĐỒNG XU QUAY TÍT: KẾT QUẢ [ SẤP ]!</div>
+                            <div class="discord-desc">👤 Con bạc: &lt;@User&gt; | Chọn: **SẤP** (500.000 VNĐ)
+🎉 **THẮNG CƯỢC:** Nhận về **+1.000.000 VNĐ** (Lãi: **+500.000 VNĐ**)
+💰 Số dư ví: **2.300.000 VNĐ**
+<span class="discord-taunt">"Đoán bừa cũng trúng! Khôn hồn thì ôm tiền mà té kẻo cháy túi!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. VÒNG QUAY MAY MẮN -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎡 5. Vòng Quay May Mắn <span class="cmd-alias">!vongquay</span> <span class="cmd-alias">!vq</span></h3>
+                        <div class="cmd-desc">Quay bánh xe 7 phân khúc nhân thưởng lên tới x10</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Casino</span>
+                        <span class="tag tag-casino">Ăn x0 - x10</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!vongquay &lt;số_tiền | all&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!vongquay 50k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Bảng Phân Bổ Tỷ Lệ 7 Phân Khúc (Cấu Hình Cố Định)</h4>
+                        <div class="data-table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ô Thưởng</th>
+                                        <th>Tỷ Lệ Xuất Hiện</th>
+                                        <th>Kết Quả Tài Chính</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="cell-badge badge-lose">Ô x0 (Mất Cược)</span></td>
+                                        <td><strong>48.8%</strong></td>
+                                        <td>Mất toàn bộ tiền cược vào túi Nhà Cái.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-draw">Ô x1.0 (Hoàn Vốn)</span></td>
+                                        <td><strong>10.0%</strong></td>
+                                        <td>Bảo toàn vốn, trả lại đúng 100% tiền cược.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-win">Ô x1.5 (Lãi Nhẹ)</span></td>
+                                        <td><strong>28.0%</strong></td>
+                                        <td>Lãi 50% tiền cược (đã cấu hình cố định 28%).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-win">Ô x2.0 (Gấp Đôi)</span></td>
+                                        <td><strong>7.0%</strong></td>
+                                        <td>Nhân đôi toàn bộ tiền cược.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-win">Ô x3.0 (Gấp Ba)</span></td>
+                                        <td><strong>3.6%</strong></td>
+                                        <td>Nhân ba toàn bộ tiền cược.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-win">Ô x5.0 (Gấp Năm)</span></td>
+                                        <td><strong>1.8%</strong></td>
+                                        <td>Nhân năm toàn bộ tiền cược.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="cell-badge badge-gold">Ô x10.0 (JACKPOT)</span></td>
+                                        <td><strong>0.8%</strong></td>
+                                        <td>Nổ hũ tối đa nhân gấp 10 lần tiền cược!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup gold">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🎡 KIM VÒNG QUAY DỪNG LẠI TẠI Ô: [ x1.5 ]!</div>
+                            <div class="discord-desc">👤 Con bạc: &lt;@User&gt; | Cược: **100.000 VNĐ**
+✨ **TRÚNG Ô x1.5 (28%):** Nhận về **+150.000 VNĐ** (Lãi: **+50.000 VNĐ**)
+💰 Số dư ví: **850.000 VNĐ**
+<span class="discord-taunt">"Kim chỉ x1.5, lụm được vài đồng bạc lẻ mà gáy to thế!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. DÒ MÌN MINES -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💎 6. Dò Mìn Săn Kim Cương <span class="cmd-alias">!domin</span> <span class="cmd-alias">!mines</span> <span class="cmd-alias">!min</span></h3>
+                        <div class="cmd-desc">Bàn cờ 20 ô ma trận chiến thuật, tự chọn số mìn (1-10) và bấm Chốt Lời khi đủ lãi</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Chiến Thuật</span>
+                        <span class="tag tag-casino">Tự Chốt Lời</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!domin &lt;số_tiền&gt; [số_mìn_1-10]</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!domin 50k 3')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học Từng Bước</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Thiết lập:</strong> Bàn cờ gồm <strong>20 ô ẩn</strong> (4 hàng x 5 cột). Người chơi chọn số lượng mìn từ <strong>1 đến 10 quả</strong> (mặc định là 3 mìn).</li>
+                            <li class="step-item"><strong>Luật chơi:</strong> Mỗi lượt người chơi chọn mở 1 ô:
+                                <br>• Nếu trúng 💎 <strong>Kim Cương:</strong> Hệ số nhân tiền thưởng tăng lũy tiến!
+                                <br>• Nếu trúng 💣 <strong>Mìn:</strong> Toàn bộ bàn nổ tung, mất trắng 100% tiền cược!
+                            </li>
+                            <li class="step-item"><strong>Cơ chế Chốt Lời (Cashout):</strong> Người chơi có thể bấm nút <strong>[💰 Chốt Lời]</strong> bất kỳ lúc nào sau khi mở trúng ít nhất 1 viên kim cương để gom tiền về ví an toàn!</li>
+                            <li class="step-item"><strong>Hệ số nhân thưởng:</strong> Số mìn càng nhiều, mỗi ô kim cương mở được sẽ nhân thưởng càng khủng khiếp (vd: 5 mìn mở 4 kim cương ăn x3.8)!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Giao Diện Minigame Dò Mìn</h4>
+                        <div class="discord-mockup cyan">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">💣 BÀN DÒ MÌN: 3 MÌN / 17 KIM CƯƠNG</div>
+                            <div class="discord-desc">💎 [ 💎 ] [ 💎 ] [ ❓ ] [ ❓ ]
+❓ [ ❓ ] [ 💎 ] [ ❓ ] [ ❓ ]
+❓ [ ❓ ] [ ❓ ] [ ❓ ] [ ❓ ]
+❓ [ ❓ ] [ ❓ ] [ ❓ ] [ ❓ ]
+
+📊 Đã tìm thấy: **3/17 Kim Cương**
+⚡ Hệ số nhân hiện tại: **x1.68**
+💰 Giá trị chốt lời: **84.000 VNĐ** (Cược: 50.000 VNĐ)
+👉 Bấm chọn ô tiếp theo hoặc bấm **[💰 Chốt Lời]**!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. CÒ QUAY NGA -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🔫 7. Cò Quay Nga Russian Roulette <span class="cmd-alias">!coquay</span> <span class="cmd-alias">!roulette</span> <span class="cmd-alias">!sungluc</span></h3>
+                        <div class="cmd-desc">Đấu súng 6 ổ đạn tử thần: Solo Bot hoặc mở phòng 2–6 người chơi gom trọn Hũ</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Sinh Tử</span>
+                        <span class="tag tag-casino">Ăn Trọn Pot</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!coquay &lt;số_tiền&gt; [bot]</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!coquay 100k bot')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Hướng Dẫn & Cơ Chế Toán Học</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cấu trúc súng:</strong> Ổ quay súng lục gồm <strong>6 buồng đạn</strong>, nạp đúng 1 viên đạn thật vào vị trí ngẫu nhiên từ 1 đến 6.</li>
+                            <li class="step-item"><strong>Chế độ chơi:</strong>
+                                <br>• <strong>Solo với Bot:</strong> Gõ <code>!coquay &lt;tiền&gt; bot</code> để đấu súng 1v1 ngay lập tức với Nhà Cái Bot.
+                                <br>• <strong>Phòng Multiplayer (2–6 người):</strong> Mở sảnh chờ, người chơi khác bấm nút tham gia đóng tiền cược vào Hũ chung (Pot).
+                            </li>
+                            <li class="step-item"><strong>Lần lượt bóp cò:</strong> Tới lượt ai, người đó có 15s bấm <strong>[🔫 Bóp Cò]</strong>:
+                                <br>• <strong>Cạch!</strong> Thoát chết, buồng đạn tiến lên 1 nấc, chuyển lượt người tiếp theo!
+                                <br>• <strong>Đoàng!</strong> Trúng đạn tử nạn, người sống sót chia đều toàn bộ Hũ Pot (trừ 8% phế sàn nếu đấu người).
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Phản Hồi Từ Sòng Bạc</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">💥 ĐOÀNG! NỔ Ở VIÊN THỨ 4/6!</div>
+                            <div class="discord-desc">💀 &lt;@BotDealer&gt; đã trúng đạn và gục ngã!
+🏆 **Người sống sót:** &lt;@User&gt;
+💰 **Ăn trọn Hũ Pot:** **+200.000 VNĐ** (Lãi ròng: **+100.000 VNĐ**)
+<span class="discord-taunt">"Mạng lớn đấy con giai! Suýt nữa thì đạn xuyên sọ!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. XÌ DÁCH BLACKJACK -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🃏 8. Sòng Bài Xì Dách Blackjack <span class="cmd-alias">!xidach</span> <span class="cmd-alias">!xd</span> <span class="cmd-alias">!blackjack</span></h3>
+                        <div class="cmd-desc">Đấu bài 21 điểm với Nhà Cái Bot hoặc mở bàn Xì Dách nhiều người chơi</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Bài Tây</span>
+                        <span class="tag tag-casino">Ăn x2 - x3</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!xidach &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!xidach 100k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Luật Bài & Thứ Tự Ưu Tiên</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Tính điểm lá bài:</strong> Lá 2–10 tính theo số; J, Q, K tính 10 điểm; Lá Át (A) tính linh hoạt 1, 10 hoặc 11 điểm.</li>
+                            <li class="step-item"><strong>Bốc bài:</strong> Đạt từ 16 đến 21 điểm là Đủ tuổi. Vượt quá 21 điểm là <strong>Quắc (Bust)</strong> ➔ Thua ngay.</li>
+                            <li class="step-item"><strong>Các thế bài thượng đẳng:</strong>
+                                <br>• <strong>Xì Bàng (2 con Át):</strong> Thắng tuyệt đối, ăn <strong>x3.0</strong>!
+                                <br>• <strong>Xì Dách (1 Át + 1 Tây/10):</strong> Ăn <strong>x2.5</strong>!
+                                <br>• <strong>Ngũ Linh (Rút đủ 5 lá mà tổng ≤ 21):</strong> Thắng mọi điểm thường!
+                            </li>
+                            <li class="step-item"><strong>Quy tắc Nhà Cái:</strong> Bot bắt buộc phải rút bài cho đến khi đạt tối thiểu 16 điểm mới được quyền dằn.</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Bàn Chơi Xì Dách</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🃏 BÀN XÌ DÁCH: BẠN (20 ĐIỂM) vs NHÀ CÁI (18 ĐIỂM)</div>
+                            <div class="discord-desc">🎴 **Bài của bạn:** [ 10♠, K♦ ] (20 điểm)
+🤖 **Bài Nhà Cái:** [ 8♣, J♥ ] (18 điểm - Dằn)
+
+🎉 **KẾT QUẢ:** BẠN ĐÃ CHIẾN THẮNG!
+💰 Nhận về: **+200.000 VNĐ** (Cược: 100.000 VNĐ)
+<span class="discord-taunt">"Nắm 20 điểm trên tay thì bố cái cũng phải quỳ!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. TIẾN LÊN MIỀN NAM -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎴 9. Tiến Lên Miền Nam <span class="cmd-alias">!tienlen</span> <span class="cmd-alias">!tlmn</span></h3>
+                        <div class="cmd-desc">Sát phạt tiến lên miền nam với Bot thông minh hoặc lập sảnh 2–4 người chơi</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Bài Tây</span>
+                        <span class="tag tag-casino">Phòng 2-4 Người</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!tienlen &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!tienlen 50k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Luật Chơi Chuẩn Tiến Lên Miền Nam</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Thứ tự độ lớn:</strong> 3 &lt; 4 &lt; 5 ... &lt; K &lt; A &lt; <strong>2 (Heo lớn nhất)</strong>. Chất: Bích ♠ &lt; Chuồn ♣ &lt; Rô ♦ &lt; Cơ ♥.</li>
+                            <li class="step-item"><strong>Cơ chế Chặt Heo:</strong>
+                                <br>• <strong>3 đôi thông:</strong> Chặt được 1 Heo bất kỳ, chặt đè 3 đôi thông nhỏ hơn.
+                                <br>• <strong>Tứ quý:</strong> Chặt được 1 Heo, đôi Heo, 3 đôi thông, tứ quý nhỏ hơn.
+                                <br>• <strong>4 đôi thông:</strong> Chặt được đôi Heo, tứ quý, không cần vòng!
+                            </li>
+                            <li class="step-item"><strong>Phân định thắng thua:</strong> Người đầu tiên đánh hết 13 lá bài trên tay sẽ về Nhất và húp trọn toàn bộ tiền Pot từ các đối thủ (trừ 5% phế sòng).</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Bàn Chơi Tiến Lên</h4>
+                        <div class="discord-mockup gold">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🎴 TIẾN LÊN MIỀN NAM: CHIẾN THẮNG VỀ NHẤT!</div>
+                            <div class="discord-desc">👑 &lt;@User&gt; đã tẩu thoát lá bài cuối cùng!
+🏆 **Xếp hạng:** 
+1. &lt;@User&gt; (Về Nhất - Húp Pot)
+2. &lt;@BotDealer&gt; (Về Nhì - Mất Cược)
+
+💰 **Tiền thưởng nhận:** **+95.000 VNĐ** (Pot 100k trừ 5% phế sàn 5k)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. ĐUA NGỰA JACKPOT -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🏇 10. Đua Ngựa Săn Hũ Jackpot <span class="cmd-alias">!duangua</span> <span class="cmd-alias">!horse</span> <span class="cmd-alias">!chaydua</span></h3>
+                        <div class="cmd-desc">Trường đua 5 chiến mã tranh tài, cược ngựa về nhất ăn x3.0 và cơ hội nổ Hũ Jackpot</div>
+                    </div>
+                    <div class="cmd-badges">
+                        <span class="tag tag-casino">Đua Ngựa</span>
+                        <span class="tag tag-casino">Ăn x3.0 + Jackpot</span>
+                    </div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!duangua &lt;mã_ngựa_1-5&gt; &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!duangua 3 50k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Danh Sách 5 Chiến Mã & Hũ Jackpot</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>5 Chiến mã:</strong>
+                                <br>1. 🔴 <strong>Xích Thố</strong> (Bứt tốc mạnh đầu trận)
+                                <br>2. ⚪ <strong>Bạch Long</strong> (Dẻo dai, giữ sức ổn định)
+                                <br>3. ⚫ <strong>Ô Truy</strong> (Chiến mã lì lợm lội ngược dòng)
+                                <br>4. 🟡 <strong>Hãn Huyết</strong> (Chạy đường trường tốc độ cao)
+                                <br>5. 🟣 <strong>Tuyệt Ảnh</strong> (Bóng ma trường đua, nước rút đỉnh cao)
+                            </li>
+                            <li class="step-item"><strong>Cơ chế cược:</strong> Dự đoán chiến mã về nhất. Thắng nhận <strong>x3.0</strong> tiền cược.</li>
+                            <li class="step-item"><strong>Hũ Jackpot Đua Ngựa:</strong> Mỗi ván cược trích 5% nạp vào Hũ tích lũy. Khi ngựa về đích với thời gian phá kỷ lục trường đua, người chơi ẵm trọn 100% tiền Hũ Jackpot!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Kết Quả Đường Đua</h4>
+                        <div class="discord-mockup cyan">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🏇 VỀ ĐÍCH: CHIẾN MÃ #3 Ô TRUY VỀ NHẤT!</div>
+                            <div class="discord-desc">🏁 **Đường đua:**
+1. 🥇 [#3 Ô Truy] ➔ Cán đích 09.42s
+2. 🥈 [#1 Xích Thố] ➔ Cán đích 09.80s
+3. 🥉 [#4 Hãn Huyết] ➔ Cán đích 10.15s
+
+👤 Con bạc: &lt;@User&gt; | Cược: #3 (100.000 VNĐ)
+🎉 **THẮNG ĐẬM:** Nhận về **+300.000 VNĐ** (Lãi: **+200.000 VNĐ**)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= SECTION 3: TIỀN TỆ & NGÂN HÀNG ================= -->
+        <section id="sec-economy" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>💰</span> PHẦN 3: KINH TẾ, TIỀN TỆ & QUẢN LÝ TÀI SẢN NGÂN HÀNG</div>
+                <span class="section-badge">15 ECONOMY COMMANDS</span>
+            </div>
+
+            <!-- TIỀN -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💵 Tra Cứu Số Dư Ví <span class="cmd-alias">!tien</span> <span class="cmd-alias">!bal</span> <span class="cmd-alias">!vi</span> <span class="cmd-alias">!money</span></h3>
+                        <div class="cmd-desc">Xem toàn bộ tình trạng tài chính: Tiền mặt, Sổ tiết kiệm, Nợ ngân hàng, Danh hiệu và Thống kê</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Kinh Tế</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!tien [@user]</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!tien')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Ý Nghĩa Các Chỉ Số</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Tiền Mặt:</strong> Tiền sẵn sàng trong túi để chơi Casino, mua sắm hoặc trả nợ.</li>
+                            <li class="step-item"><strong>Tiết Kiệm:</strong> Tiền gửi ngân hàng an toàn, sinh lãi 2%/ngày lúc 00:00.</li>
+                            <li class="step-item"><strong>Nợ Ngân Hàng:</strong> Khoản nợ vay chưa thanh toán. Nếu &gt; 10M sẽ bị hạn chế cược và khấu trừ 40% thu nhập.</li>
+                            <li class="step-item"><strong>Danh Hiệu:</strong> Tự động gắn <code>[Rich]</code> nếu tổng tài sản &gt; 120M, hoặc <code>[Con Nợ]</code> nếu nợ &gt; 10M.</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Ví Tiền</h4>
+                        <div class="discord-mockup gold">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">💰</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">💰 VÍ TIỀN CỦA MITCHIE</div>
+                            <div class="discord-desc">💵 **Tiền Mặt:** 8.450.000 VNĐ
+🏦 **Tiết Kiệm:** 12.000.000 VNĐ *(Lãi 2%/ngày)*
+📉 **Nợ Ngân Hàng:** 0 VNĐ
+🔥 **Chuỗi Ngày:** 14 ngày liên tiếp
+🏷️ **Tình Trạng:** 🟢 Không nợ
+🎮 **Thống Kê:** Chơi: 142 | Thắng: 68 (47.9%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAILY -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎁 Điểm Danh Hàng Ngày <span class="cmd-alias">!daily</span> <span class="cmd-alias">!diemdanh</span></h3>
+                        <div class="cmd-desc">Nhận trợ cấp sinh hoạt mỗi ngày, cộng dồn chuỗi ngày điểm danh để nhận thưởng khủng</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Thưởng 24h</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!daily</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!daily')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Cơ Chế Thưởng Điểm Danh</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cơ bản:</strong> Nhận ngẫu nhiên từ <strong>50.000 đến 200.000 VNĐ</strong> tiền mặt.</li>
+                            <li class="step-item"><strong>Thưởng chuỗi (Daily Streak):</strong> Cứ mỗi ngày điểm danh liên tiếp, nhận thêm <strong>+10.000 VNĐ</strong> vào tiền thưởng (tối đa cộng thêm +100.000 VNĐ ở mốc 10 ngày).</li>
+                            <li class="step-item"><strong>Thẻ x3:</strong> Trang bị <code>#6 Thẻ Tăng Trợ Cấp x3</code> trong Shop để nhân 3 toàn bộ phần thưởng!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Điểm Danh</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🎁</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🎁 ĐIỂM DANH HÀNG NGÀY THÀNH CÔNG!</div>
+                            <div class="discord-desc">💵 **Tiền trợ cấp nhận được:** **+180.000 VNĐ**
+🔥 **Chuỗi liên tục:** **5 ngày** (Thưởng chuỗi: **+50.000 VNĐ**)
+💰 **Tổng thực nhận vào ví:** **+230.000 VNĐ**
+💡 *Hãy quay lại sau 00:00 đêm nay để duy trì chuỗi ngày!*</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GỬI & RÚT TIẾT KIỆM -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🏦 Gửi & Rút Tiết Kiệm <span class="cmd-alias">!guitietkiem</span> <span class="cmd-alias">!gtk</span> <span class="cmd-alias">!ruttietkiem</span> <span class="cmd-alias">!rtk</span></h3>
+                        <div class="cmd-desc">Gửi tiền vào két ngân hàng sinh lời 2%/ngày và rút tiền về ví linh hoạt 24/7</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Lãi 2%/ngày</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!gtk &lt;số_tiền | all&gt;  |  !rtk &lt;số_tiền | all&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!gtk all')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Tiết Kiệm & Lãi Suất</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Gửi tối thiểu:</strong> 100.000 VNĐ/lần gửi.</li>
+                            <li class="step-item"><strong>Điều kiện gửi:</strong> Không bị nợ ngân hàng quá 10 Triệu VNĐ.</li>
+                            <li class="step-item"><strong>Lãi suất ngân hàng:</strong> <strong>2.0%/ngày</strong>, tự động tính và cộng dồn vào sổ tiết kiệm lúc 00:00 đêm (tối đa 200.000 VNĐ lãi/ngày).</li>
+                            <li class="step-item"><strong>Rút tiền:</strong> Miễn phí hoàn toàn, tiền mặt vào ví ngay lập tức bằng <code>!rtk &lt;tiền | all&gt;</code>.</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Tiết Kiệm</h4>
+                        <div class="discord-mockup cyan">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🏦</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🏦 GỬI TIẾT KIỆM THÀNH CÔNG</div>
+                            <div class="discord-desc">• **Số tiền gửi:** **+5.000.000 VNĐ**
+• **Tổng tiền trong sổ:** **15.000.000 VNĐ**
+• **Số dư ví còn lại:** **1.200.000 VNĐ**
+💡 *Lãi suất 2%/ngày tự động cộng lúc 00:00 (Tối đa 200k/ngày).*</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VAY VÀ TRẢ NỢ NGÂN HÀNG -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💳 Vay Tiền, Trả Nợ & Sổ Nợ <span class="cmd-alias">!vay</span> <span class="cmd-alias">!tra</span> <span class="cmd-alias">!no</span></h3>
+                        <div class="cmd-desc">Vay vốn cứu cánh tối đa 10M, theo dõi thời hạn 5 ngày và trả nợ trực tiếp</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-debt">Vay Max 10M</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!vay &lt;số_tiền&gt;  |  !tra &lt;số_tiền | all&gt;  |  !no</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!vay 2m')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Vay & Thời Hạn Trừng Phạt</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Hạn mức vay:</strong> Tối đa <strong>10.000.000 VNĐ</strong>. Phí dịch vụ giải ngân 5% (vay 10M cầm về 9.5M, sổ nợ ghi 10M).</li>
+                            <li class="step-item"><strong>Thời hạn an toàn:</strong> <strong>5 ngày (120 giờ)</strong>.</li>
+                            <li class="step-item"><strong>Phạt quá hạn:</strong> Sau 5 ngày chưa thanh toán hết nợ, cứ mỗi ngày tiếp theo hệ thống tự động phạt cộng thêm <strong>+200.000 VNĐ nợ</strong> vào sổ nợ!</li>
+                            <li class="step-item"><strong>Trả nợ:</strong> Dùng tiền mặt trong ví gõ <code>!tra &lt;tiền | all&gt;</code>, hoặc tham gia 5 công việc gạt nợ (xem Phần 4).</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Sổ Nợ (!no)</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">📉</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">📉 SỔ TRA CỨU NỢ NẦN NGÂN HÀNG</div>
+                            <div class="discord-desc">• **Tổng nợ ghi sổ:** **4.200.000 VNĐ**
+• **Quy định quá hạn:** Quá 5 ngày phạt +200k/ngày *(Còn 2 ngày 14 giờ đến hạn phạt)*
+• **Trạng thái:** 🟢 Nợ ≤ 10 triệu: Hưởng 100% lương, không giới hạn cược Casino.
+• **Trả nợ:** `!tra &lt;tiền/all&gt;` hoặc làm 5 việc: `!cotoilet`, `!phucvu`, `!bocvac`, `!doinothue`, `!ganno`</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHUYỂN TIỀN -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💸 Chuyển Khoản Người Chơi <span class="cmd-alias">!pay</span> <span class="cmd-alias">!chuyentien</span></h3>
+                        <div class="cmd-desc">Chuyển tiền mặt trực tiếp cho người chơi khác với hàng rào chống clone farm tiền</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Giao Dịch</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!pay @user &lt;số_tiền&gt;</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!pay @user 100k')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Điều Kiện Bắt Buộc Khi Chuyển Tiền</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cấm nợ:</strong> Người gửi tuyệt đối không được có dư nợ ngân hàng (phải trả hết nợ mới được chuyển).</li>
+                            <li class="step-item"><strong>Chống clone:</strong> Tài khoản gửi phải có số dư tối thiểu 50.000 VNĐ.</li>
+                            <li class="step-item"><strong>Hạn mức người nhận:</strong> Người nhận trong ngày hôm đó chưa nhận tiền từ quá 2 người gửi khác nhau.</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Chuyển Khoản</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">💸</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">💸 CHUYỂN TIỀN THÀNH CÔNG</div>
+                            <div class="discord-desc">👤 Người chuyển: &lt;@Sender&gt;
+🎯 Người nhận: &lt;@Receiver&gt;
+💵 Số tiền: **+500.000 VNĐ**
+💰 Số dư ví còn lại: **1.850.000 VNĐ**</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: 5 VIỆC LÀM GẠT NỢ ================= -->
+        <section id="sec-debt" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>💳</span> PHẦN 4: 5 CÔNG VIỆC GẠT NỢ NGÂN HÀNG (THAY THẾ BÁT HỌ)</div>
+                <span class="section-badge">DEBT RELIEF JOBS</span>
+            </div>
+
+            <div class="alert-box alert-success">
+                <span>📢</span>
+                <div>
+                    <strong>THÔNG BÁO QUAN TRỌNG:</strong> Cơ chế Nợ Bát Họ Chợ Đen đã chính thức được <strong>BÃI BỎ HOÀN TOÀN</strong>. Toàn bộ 5 công việc dưới đây được giữ nguyên và trừ trực tiếp vào <strong>Sổ Nợ Ngân Hàng (user.debt)</strong>!
+                </div>
+            </div>
+
+            <div class="data-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Công Việc</th>
+                            <th>Lệnh Thực Hiện</th>
+                            <th>Hạn Mức Trừ Nợ</th>
+                            <th>Trợ Cấp Tiền Mặt</th>
+                            <th>Hồi Chiêu</th>
+                            <th>Cơ Chế & Minigame Chi Tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Cọ Bồn Cầu Sòng Bạc</strong></td>
+                            <td><code>!cotoilet</code><br><code>!chatoilet</code></td>
+                            <td><strong style="color:var(--emerald);">-100k đến -300k</strong></td>
+                            <td>+10.000 VNĐ</td>
+                            <td>42 phút</td>
+                            <td>Minigame bấm nút 5 bước (Kỳ cọ vết ố ➔ Dội nước sôi ➔ Xịt khử mùi ➔ Lau sàn ➔ Đánh bóng gương). An toàn 100%, không rủi ro.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Pha Chế Phòng VIP</strong></td>
+                            <td><code>!phucvu</code><br><code>!bartender</code></td>
+                            <td><strong style="color:var(--emerald);">-500k đến -1.000.000đ</strong></td>
+                            <td>Bo nóng 50k - 200k</td>
+                            <td>42 phút</td>
+                            <td>Nhận yêu cầu công thức cocktail từ khách VIP. Bấm nút chọn đúng các thành phần. Nếu pha ngon được trừ đậm nợ + khách VIP bo nóng tiền mặt vào ví!</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Bốc Vác Hàng Lậu</strong></td>
+                            <td><code>!bocvac</code><br><code>!cuuli</code></td>
+                            <td><strong style="color:var(--emerald);">-150k đến -1.500.000đ+</strong></td>
+                            <td>+10.000 VNĐ</td>
+                            <td>42 phút</td>
+                            <td>Bốc các kiện hàng nặng tại cảng đêm qua 3 pha (Nhấc hàng ➔ Giữ thăng bằng né trượt vỏ chuối ➔ Đặt lên xe đẩy). Kiện hàng càng nặng trừ nợ càng khủng!</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Đòi Nợ Thuê Sòng Bạc</strong></td>
+                            <td><code>!doinothue</code><br><code>!doino</code></td>
+                            <td><strong style="color:var(--emerald);">-600k đến -1.500.000đ</strong></td>
+                            <td>+15.000 VNĐ</td>
+                            <td>42 phút</td>
+                            <td>Đối đầu với NPC con nợ lì lợm. Tích lũy thanh hoảng loạn (Panic Meter 0–100%) qua các lựa chọn: Dọa nạt bặm trợn, Đập phá đồ đạc, Dụ dỗ khuyên nhủ. Đạt 100% là thu hồi nợ thành công!</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Gán Nội Tạng Bán Thận</strong></td>
+                            <td><code>!ganno</code><br><code>!banthan</code></td>
+                            <td><strong style="color:var(--emerald);">-2.000.000đ đến -5.000.000đ</strong></td>
+                            <td>+100.000 VNĐ (mua phở)</td>
+                            <td>12 giờ</td>
+                            <td>Bán máu/thận gán nợ tại phòng khám chui. Trừ ngay khoản nợ khổng lồ! Bác sĩ dúi vào tay 100k tiền mặt bồi bổ. Dính debuff 12h suy nhược (lương <code>!work</code> giảm 30%, dame Boss giảm 50%).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 5: LAO ĐỘNG & TÙ TỘI ================= -->
+        <section id="sec-labor" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>👷</span> PHẦN 5: LAO ĐỘNG KIẾM TIỀN, TỘI PHẠM & NHÀ TÙ</div>
+                <span class="section-badge">CRIME & PUNISHMENT</span>
+            </div>
+
+            <!-- VE CHAI -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🗑️ Nhặt Ve Chai Kiếm Tiền Lẻ <span class="cmd-alias">!vechai</span> <span class="cmd-alias">!nhatvechai</span></h3>
+                        <div class="cmd-desc">Lùng sục thùng rác nhặt vỏ lon, chai nhựa kiếm 10k - 30k mỗi 5 phút</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Lao Động</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!vechai</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!vechai')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Nhặt Ve Chai</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Thu nhập:</strong> 10.000 đến 30.000 VNĐ tiền tươi vào ví.</li>
+                            <li class="step-item"><strong>Hồi chiêu:</strong> 5 phút/lần.</li>
+                            <li class="step-item"><strong>Giới hạn:</strong> Tối đa 15 lần/ngày (tự động hồi phục lúc 00:00 đêm).</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Ve Chai</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🗑️</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🗑️ BẠN VỪA BỚI ĐƯỢC MỚ VE CHAI!</div>
+                            <div class="discord-desc">📦 Bán được 5 vỏ lon bia + 2 thùng carton rách:
+💵 **Nhận:** **+24.000 VNĐ** tiền mặt
+📊 Hôm nay đã nhặt: **4/15 lần** (Còn 11 lần)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LÀM VIỆC -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💼 Đi Làm Lãnh Lương <span class="cmd-alias">!lamviec</span> <span class="cmd-alias">!work</span> <span class="cmd-alias">!laodong</span></h3>
+                        <div class="cmd-desc">Lao động chân chính nhận lương 50k - 200k mỗi 2 giờ, hỗ trợ x2 Tăng Ca</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-economy">Lao Động</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!lamviec</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!work')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Làm Việc</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Thu nhập:</strong> 50.000 đến 200.000 VNĐ.</li>
+                            <li class="step-item"><strong>Hồi chiêu:</strong> 2 giờ/ca làm.</li>
+                            <li class="step-item"><strong>Tăng ca x2:</strong> Sở hữu <code>#3 Tăng Ca x2</code> sẽ tự động nhân đôi lương (tối thiểu 280.000 VNĐ).</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Đi Làm</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">💼</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">💼 KẾT THÚC CA LÀM VIỆC CHĂM CHỈ!</div>
+                            <div class="discord-desc">🏢 Công việc: Bốc vác hàng hóa tại siêu thị
+💵 **Tiền lương nhận:** **+165.000 VNĐ**
+💰 Số dư ví hiện tại: **920.000 VNĐ**
+⏳ Nghỉ ngơi 2 giờ trước khi nhận ca tiếp theo.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ĂN TRỘM -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🥷 Ăn Trộm Móc Túi <span class="cmd-alias">!antrom</span> <span class="cmd-alias">!trom</span> <span class="cmd-alias">!rob</span></h3>
+                        <div class="cmd-desc">Lén tiếp cận móc túi người chơi khác lấy 10% - 40% ví tiền mặt</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-crime">Tội Phạm</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!antrom @user</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!antrom @user')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Cơ Chế Móc Túi & Khắc Chế</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Tỷ lệ thành công:</strong> <strong>45%</strong> cơ bản. Trang bị <code>#5 Bộ Đồ Trộm Pro</code> tăng thêm +15% (thành <strong>60%</strong>).</li>
+                            <li class="step-item"><strong>Chiến lợi phẩm:</strong> Móc trộm được <strong>10% đến 40%</strong> tiền mặt trong ví nạn nhân (tối đa 2.500.000 VNĐ/lần).</li>
+                            <li class="step-item"><strong>Khắc chế Khiên:</strong> Nếu nạn nhân có trang bị <code>#2 Khiên Chống Trộm</code>, vụ trộm bị bẻ gãy 100%, khiên vỡ và kẻ trộm về tay trắng!</li>
+                            <li class="step-item"><strong>Thất bại:</strong> Bị bắt quả tang, phạt tiền túi 100k - 500k hoặc bị tống giam vào Tù!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Ăn Trộm</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🥷</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🥷 ĂN TRỘM THÀNH CÔNG!</div>
+                            <div class="discord-desc">🎯 Nạn nhân: &lt;@Victim&gt;
+💵 Lấy được: **+850.000 VNĐ** *(28% ví nạn nhân)*
+💰 Số dư ví hiện tại: **2.150.000 VNĐ**
+<span class="discord-taunt">"Móc ví ngọt xớt! Thằng kia mất tiền mà mặt vẫn ngơ ngác như bò đội nón!"</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NHÀ TÙ & CẢI TẠO -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>⛓️ Nhà Tù & Lao Động Cải Tạo <span class="cmd-alias">!tu</span> <span class="cmd-alias">!caitao</span> <span class="cmd-alias">!laodongtu</span></h3>
+                        <div class="cmd-desc">Hệ thống thụ án giam giữ, làm nhiệm vụ lao động công ích để được tự do</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-crime">Nhà Tù</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!tu  |  !caitao</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!caitao')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Chế Trại Giam</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Lý do vào tù:</strong> Trộm cắp thất bại, cướp bank bị Cảnh Sát tóm, bẻ khóa kích hoạt báo động, hoặc bị Owner xử phạt <code>!ditu</code>.</li>
+                            <li class="step-item"><strong>Hạn chế trong tù:</strong> Bị khóa hoàn toàn các lệnh tiền tệ, sòng bạc, mua bán và chuyển khoản.</li>
+                            <li class="step-item"><strong>Cách ra tù:</strong> Gõ <code>!caitao</code> làm việc lao động công ích (dọn vệ sinh trại giam, đập đá, may găng tay - mỗi 15s/việc). Đạt đủ số việc yêu cầu (vd: 14 việc) sẽ được phóng thích tự do ngay lập tức!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Nhà Tù</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">⛓️</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">⛓️ BẢNG THEO DÕI PHẠM NHÂN</div>
+                            <div class="discord-desc">👤 Tù nhân: &lt;@User&gt;
+📝 Tội danh: Cướp ngân hàng bất thành bị bắt quả tang
+🔨 **Tiến độ cải tạo:** **6 / 14 việc**
+⏳ Gõ lệnh \`!caitao\` để tiếp tục lao động chuộc lỗi!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 6: CƯỚP BANK & BẺ KHÓA ================= -->
+        <section id="sec-heist" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>💣</span> PHẦN 6: VỤ CƯỚP THẾ KỶ 100TR & BẺ KHÓA KÉT SẮT</div>
+                <span class="section-badge">HEIST & VAULT HEIST</span>
+            </div>
+
+            <!-- CƯỚP BANK 100TR -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🏦 Vụ Cướp Thế Kỷ 100.000.000 VNĐ <span class="cmd-alias">!cuopbank</span> <span class="cmd-alias">!bankheist</span></h3>
+                        <div class="cmd-desc">Phi vụ cướp ngân hàng thế kỷ tối đa 5 người, chia đều 20.000.000 VNĐ/người</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-crime">Cướp 100M</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!cuopbank</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!cuopbank')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Trình Cướp Bank & 5 Vai Trò Chiến Thuật</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Điều kiện Host:</strong> Cần sở hữu <code>#7 Bộ Đồ Nghề & Sách Bẻ Khóa</code>. Mở phòng chờ 60s cho tối đa 5 người tham gia.</li>
+                            <li class="step-item"><strong>5 Role ngẫu nhiên:</strong>
+                                <br>1. 💻 <strong>Hacker:</strong> Tắt camera an ninh ngân hàng.
+                                <br>2. 🔦 <strong>Phá Laser:</strong> Cắt cảm biến tia quang học.
+                                <br>3. ✂️ <strong>Cắt Mạch Dây 3 Pha:</strong> Cắt đúng thứ tự 5 dây màu điện.
+                                <br>4. 🔐 <strong>Mở Khóa Cơ:</strong> Bẻ chốt cơ học ổ khóa cửa kho.
+                                <br>5. 🛡️ <strong>Support Hậu Cần:</strong> Quyền năng đặc biệt: giải hộ bất kỳ bước nào nếu đồng đội bí!
+                            </li>
+                            <li class="step-item"><strong>Ải cuối:</strong> Cả đội cùng giải mật khẩu 4 ký tự <code>[A-B-C-D]</code> trong 60s né Cảnh Sát tuần tra.</li>
+                            <li class="step-item"><strong>Tỷ lệ thành công:</strong> <strong>18%</strong>.
+                                <br>• <strong>Thành công:</strong> Nhận trọn <strong>100.000.000 VNĐ</strong> (chia đều <strong>20.000.000 VNĐ/người</strong>).
+                                <br>• <strong>Thất bại:</strong> Bị Cảnh Sát bắt, phạt mỗi người <strong>3.000.000 VNĐ</strong> + thụ án tù <strong>14 việc cải tạo</strong>!
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Sảnh Cướp Bank</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">💣</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🚨 VỤ CƯỚP THẾ KỶ 100.000.000 VNĐ ĐANG KÍCH HOẠT!</div>
+                            <div class="discord-desc">👤 Băng chủ: &lt;@Host&gt;
+👥 Thành viên (5/5):
+1. &lt;@P1&gt; — 💻 Hacker Camera
+2. &lt;@P2&gt; — 🔦 Phá Lưới Laser
+3. &lt;@P3&gt; — ✂️ Cắt Dây 3 Pha
+4. &lt;@P4&gt; — 🔐 Bẻ Chốt Cơ
+5. &lt;@P5&gt; — 🛡️ Hậu Cần Support
+
+⚡ Bắt đầu đột nhập kho tiền trong 3... 2... 1!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẺ KHÓA KÉT SẮT -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🔐 Bẻ Khóa Két Sắt & Cậy Két Người Chơi <span class="cmd-alias">!bekhoa</span> <span class="cmd-alias">!trathu</span></h3>
+                        <div class="cmd-desc">Bẻ 3 cấp độ két sắt hoặc cậy két tiết kiệm người khác, cơ chế đánh rơi CCCD trả thù</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-crime">Bẻ Khóa</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!bekhoa  |  !bekhoa @user  |  !trathu @user</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!bekhoa')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 3 Phân Tầng Két & Cơ Chế Trả Thù CCCD</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Yêu cầu:</strong> Có <code>#7 Bộ Đồ Nghề & Sách</code>. Hồi chiêu 10 phút. Tối đa 4 lần/ngày.</li>
+                            <li class="step-item"><strong>3 Tầng két NPC:</strong>
+                                <br>• 🥉 <strong>Tạp Hóa:</strong> Cọc 150k. 2 pha bẻ. Ăn <strong>400k – 800k</strong>.
+                                <br>• 🥈 <strong>Tiệm Vàng:</strong> Cọc 300k. 3 pha bẻ. Ăn <strong>1tr – 2tr</strong>.
+                                <br>• 🥇 <strong>Diamond Guard:</strong> Cọc 800k. 3 pha cực khó (30s/pha). Ăn <strong>3.5tr – 6tr</strong> + 20% cơ hội nổ thêm <strong>Thỏi Vàng 1.5M</strong>!
+                            </li>
+                            <li class="step-item"><strong>Cậy két người chơi (<code>!bekhoa @user</code>):</strong> Cọc 500k, vét <strong>15% tiền tiết kiệm</strong> của nạn nhân. Thành công có 8s chọn:
+                                <br>• 🧹 <em>Dọn Hiện Trường (-300k):</em> Ẩn danh 100%.
+                                <br>• 🏃 <em>Vơ Tiền Chuồn Gấp (0đ):</em> Giữ trọn tiền nhưng đánh rơi <strong>CCCD</strong>!
+                            </li>
+                            <li class="step-item"><strong>Trả thù (<code>!trathu @user</code>):</strong> Nạn nhân có CCCD trong 10h được quyền phục kích trả thù (tỷ lệ thắng <strong>80%</strong>), đòi lại <strong>100% tiền két</strong> + phạt kẻ trộm <strong>300.000 VNĐ</strong> viện phí!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Bẻ Khóa Két</h4>
+                        <div class="discord-mockup emerald">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🔐</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">✨ BẺ KHÓA KÉT DIAMOND GUARD THÀNH CÔNG!</div>
+                            <div class="discord-desc">💎 **Phần thưởng vét két:** **+4.800.000 VNĐ**
+🌟 **MAY MẮN:** Nhặt được thêm **Thỏi Vàng SJC (+1.500.000 VNĐ)**!
+💰 **Tổng thực nhận:** **+6.300.000 VNĐ**
+🛠️ Độ bền Bộ Đồ Nghề: Đã dùng 2/3 lần (Lần 4 sẽ vỡ!)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 7: PVP & BOSS ================= -->
+        <section id="sec-pvp" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>⚔️</span> PHẦN 7: PVP THÁCH ĐẤU 1V1 & BOSS THẾ GIỚI</div>
+                <span class="section-badge">SOLO & RAID BOSS</span>
+            </div>
+
+            <!-- THÁCH ĐẤU 1V1 -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>⚔️ Thách Đấu Solo 1v1 <span class="cmd-alias">!thach</span> <span class="cmd-alias">!thachdau</span> <span class="cmd-alias">!pvp</span></h3>
+                        <div class="cmd-desc">Thách đấu người chơi khác phân tài cao thấp mọi trò casino, phế sàn 5%</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-casino">PvP Solo</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!thach @user &lt;số_tiền&gt; [coinflip | taixiu | slot | baucua | vongquay]</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!thach @user 100k coinflip')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Thách Đấu</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cách thức:</strong> Gửi lời thách đấu kèm số tiền cược và trò chơi lựa chọn.</li>
+                            <li class="step-item"><strong>Thời gian chờ:</strong> Đối thủ có 60 giây để bấm [Chấp Nhận] hoặc [Từ Chối].</li>
+                            <li class="step-item"><strong>Tiền thưởng:</strong> Người thắng ẵm trọn Pot tiền của cả 2 bên (trừ 5% phế sòng bạc).</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Thách Đấu</h4>
+                        <div class="discord-mockup gold">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">⚔️</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">⚔️ KÈO THÁCH ĐẤU COINFLIP: 500.000 VNĐ!</div>
+                            <div class="discord-desc">👤 Thách đấu: &lt;@P1&gt; ➔ Đối thủ: &lt;@P2&gt;
+🏆 **KẾT QUẢ:** &lt;@P1&gt; (SẤP) đã đấm gục &lt;@P2&gt; (NGỬA)!
+💰 **Tiền thưởng nhận:** **+950.000 VNĐ** (Pot 1M trừ 5% phế sàn 50k)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOSS THẾ GIỚI -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🐉 Săn Boss Thế Giới <span class="cmd-alias">!boss</span> <span class="cmd-alias">!slayboss</span></h3>
+                        <div class="cmd-desc">Đột kích Boss Thế Giới HP khủng, chia thưởng tiền mặt theo % sát thương gây ra</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-crime">World Boss</span></div>
+                </div>
+                <div class="syntax-box">
+                    <span class="syntax-code">!boss</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('!boss')">Copy Lệnh</button>
+                </div>
+                <div class="cmd-body">
+                    <div class="guide-box">
+                        <h4>📖 Quy Tắc Đánh Boss</h4>
+                        <ul class="step-list">
+                            <li class="step-item"><strong>Cơ chế chém Boss:</strong> Mỗi lượt tấn công gây sát thương ngẫu nhiên. Hồi chiêu 8 giây/nhát chém.</li>
+                            <li class="step-item"><strong>Cuồng nộ (Rage):</strong> Khi Boss dưới 30% máu sẽ vào trạng thái Cuồng Nộ, có tỷ lệ phản đòn gây choáng người chơi!</li>
+                            <li class="step-item"><strong>Chia thưởng:</strong> Khi Boss bị hạ gục, quỹ thưởng khổng lồ (lên tới 10.000.000 VNĐ) chia đều cho tất cả thợ săn tham gia theo tỷ lệ % sát thương đóng góp!</li>
+                        </ul>
+                    </div>
+                    <div class="preview-box">
+                        <h4>💬 Hộp Thoại Đánh Boss</h4>
+                        <div class="discord-mockup ruby">
+                            <div class="discord-bot-header">
+                                <div class="discord-avatar">🐉</div>
+                                <span class="discord-name">Vua Lừa Sòng Bạc</span>
+                                <span class="discord-app-tag">APP</span>
+                            </div>
+                            <div class="discord-title">🐉 TRẢM BOSS THẾ GIỚI: HẮC LONG SÒNG BẠC</div>
+                            <div class="discord-desc">⚔️ Bạn vừa tung cú chém chí mạng: **-12.450 HP**!
+🩸 Máu Boss còn lại: **45.200 / 100.000 HP** (45.2%)
+📊 Đóng góp sát thương của bạn: **18.4%**
+⏳ Hồi chiêu nhát chém tiếp theo: 8 giây.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 8: CỬA HÀNG & KHO ĐỒ ================= -->
+        <section id="sec-shop" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>🛒</span> PHẦN 8: CỬA HÀNG ĐẦU TƯ & QUẢN LÝ KHO ĐỒ</div>
+                <span class="section-badge">SHOP & INVENTORY</span>
+            </div>
+
+            <div class="alert-box alert-info">
+                <span>🛒</span>
+                <div>
+                    <strong>CẬP NHẬT CHUẨN HÓA DANH MỤC CỬA HÀNG (#1 – #7):</strong>
+                    <br>Vật phẩm #8 Hộp Cao Dán & Thuốc Đỏ đã được gỡ bỏ hoàn toàn do cơ chế Nợ Bát Họ Chợ Đen không còn tồn tại. Danh mục shop hiện tại có 7 vật phẩm chuyên dụng hỗ trợ cày tiền, bảo hộ và cướp ngân hàng.
+                </div>
+            </div>
+
+            <div class="data-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã #</th>
+                            <th>Tên Vật Phẩm</th>
+                            <th>Giá Bán</th>
+                            <th>Cơ Chế & Công Dụng Chi Tiết</th>
+                            <th>Giới Hạn Trong Kho</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>#1</code></td>
+                            <td>🍀 <strong>Bùa May Mắn</strong></td>
+                            <td>500.000 VNĐ</td>
+                            <td>Tăng tỷ lệ thắng trong 1 ván Casino tiếp theo. Tự động kích hoạt khi chơi.</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#2</code></td>
+                            <td>🛡️ <strong>Khiên Chống Trộm</strong></td>
+                            <td>1.000.000 VNĐ</td>
+                            <td>Tự động bảo vệ ví khỏi 1 lần bị <code>!antrom</code> hoặc chặn đứng 1 lần bị cậy két <code>!bekhoa @user</code>.</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#3</code></td>
+                            <td>💪 <strong>Tăng Ca x2</strong></td>
+                            <td>100.000 VNĐ</td>
+                            <td>Nhân đôi lương làm việc <code>!work</code> 1 lần duy nhất (lương tối thiểu 280.000 VNĐ).</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#4</code></td>
+                            <td>📜 <strong>Giấy Giảm Nợ 20%</strong></td>
+                            <td>800.000 VNĐ</td>
+                            <td>Giảm trực tiếp 20% số nợ ngân hàng hiện tại (giảm tối đa 2.500.000 VNĐ nợ). Gõ <code>!sudung 4</code> để dùng.</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#5</code></td>
+                            <td>🥷 <strong>Bộ Đồ Trộm Pro</strong></td>
+                            <td>400.000 VNĐ</td>
+                            <td>Tăng thêm +15% tỷ lệ móc túi thành công khi dùng <code>!antrom</code> (tăng từ 45% lên 60%).</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#6</code></td>
+                            <td>🎁 <strong>Thẻ Tăng Trợ Cấp x3</strong></td>
+                            <td>200.000 VNĐ</td>
+                            <td>Nhân ba lần tiền điểm danh hàng ngày <code>!daily</code> kế tiếp. Tự động kích hoạt.</td>
+                            <td>Tối đa 1 cái</td>
+                        </tr>
+                        <tr>
+                            <td><code>#7</code></td>
+                            <td>🧰 <strong>Bộ Đồ Nghề & Sách Bẻ Khóa</strong></td>
+                            <td>500.000 VNĐ</td>
+                            <td>Bắt buộc phải có để đi <code>!bekhoa</code> và làm host <code>!cuopbank</code>. Dùng được 3 lần lành lặn (lần 4 vỡ nát). Có thể gõ <code>!ban doket [1|2]</code> để thanh lý ve chai thu lại 100k trước khi vỡ!</td>
+                            <td>Tối đa 2 bộ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 9: BỘ LỆNH QUẢN TRỊ OWNER ================= -->
+        <section id="sec-owner" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>👑</span> PHẦN 9: DANH MỤC CHI TIẾT 125 LỆNH QUẢN TRỊ OWNER</div>
+                <span class="section-badge">125 OWNER COMMANDS</span>
+            </div>
+
+            <div class="alert-box alert-warning">
+                <span>🔑</span>
+                <div>
+                    <strong>CÁCH KÍCH HOẠT QUYỀN OWNER:</strong>
+                    <br>Gõ lệnh <code>!owner &lt;mật_khẩu&gt;</code> (Mật khẩu mặc định: <code>@12345</code>). Sau khi kích hoạt thành công, ID Discord của bạn sẽ được nạp quyền lực tối thượng. Đổi mật khẩu bất cứ lúc nào bằng <code>!thaymatkhau &lt;pass_mới&gt;</code>.
+                </div>
+            </div>
+
+            <!-- NHÓM 1: TIỀN TỆ -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💵 Nhóm 1: Quản Trị Tiền Bạc & Kinh Tế Toàn Server</h3>
+                        <div class="cmd-desc">Các lệnh can thiệp tài sản, phát tiền và tịch thu tiền người chơi</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-owner">Owner Economy</span></div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="data-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cú Pháp Lệnh</th>
+                                    <th>Biệt Danh (Aliases)</th>
+                                    <th>Chức Năng & Cách Dùng Chi Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>!congtien @user &lt;tiền&gt;</code></td>
+                                    <td><code>!themno</code></td>
+                                    <td>Bơm tiền mặt vào ví người chơi. Hỗ trợ định dạng 500k, 10m, 1b.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!trutien @user &lt;tiền | all&gt;</code></td>
+                                    <td><code>!phattien</code></td>
+                                    <td>Trừ tiền mặt trong ví người chơi. Gõ all để trừ sạch về 0 VNĐ.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!phattien &lt;tiền&gt;</code></td>
+                                    <td><code>!airdrop</code></td>
+                                    <td>Phát tiền thưởng đồng loạt cho toàn bộ thành viên có trong cơ sở dữ liệu.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!tichthuhet</code></td>
+                                    <td><code>!confiscateall</code>, <code>!tichthu</code></td>
+                                    <td>Tịch thu toàn bộ tiền mặt trong ví của tất cả người chơi trên server về 0.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!resetbank</code></td>
+                                    <td><code>!resetall</code></td>
+                                    <td>Reset toàn bộ hệ thống số dư (tiền mặt, tiết kiệm, nợ) về trạng thái ban đầu.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!soitaikhoan @user</code></td>
+                                    <td><code>!soivi</code>, <code>!soi</code></td>
+                                    <td>Soi toàn bộ tài sản: Tiền ví, Bank, Nợ, Lịch sử giao dịch, Túi đồ của người chơi.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NHÓM 2: NỢ NẦN -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>💳 Nhóm 2: Nắm Thóp Con Nợ & Quản Trị Sổ Nợ</h3>
+                        <div class="cmd-desc">Tăng giảm nợ, ép nợ, xóa nợ và đóng băng lãi suất</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-owner">Owner Debt Control</span></div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="data-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cú Pháp Lệnh</th>
+                                    <th>Biệt Danh (Aliases)</th>
+                                    <th>Chức Năng & Cách Dùng Chi Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>!tangno @user &lt;tiền&gt; [lý_do]</code></td>
+                                    <td><code>!epno</code>, <code>!congno</code>, <code>!adddebt</code>, <code>!forcedebt</code></td>
+                                    <td>Tăng nợ cho người chơi. Tự động tính hạn nợ và đồng bộ danh hiệu <code>[Con Nợ]</code> nếu &gt; 10M.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!giamno @user &lt;tiền&gt; [lý_do]</code></td>
+                                    <td><code>!trueno</code>, <code>!subdebt</code></td>
+                                    <td>Giảm bớt một khoản nợ cho người chơi.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!setno @user &lt;tiền&gt;</code></td>
+                                    <td><code>!setdebt</code></td>
+                                    <td>Thiết lập chính xác số nợ ngân hàng cho người chơi.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!xoano @user</code></td>
+                                    <td><code>!chono</code>, <code>!cleardebt</code></td>
+                                    <td>Xóa trắng toàn bộ nợ cho 1 người, gỡ bỏ danh hiệu con nợ ngay lập tức.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!masscleardebt</code></td>
+                                    <td><code>!anxano</code>, <code>!daixano</code></td>
+                                    <td>Đại xá xóa sạch toàn bộ nợ nần cho tất cả con bạc trên toàn server!</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!xietno @user</code></td>
+                                    <td><code>!xietsono</code></td>
+                                    <td>Cưỡng chế siết nợ: Rút sạch Sổ Tiết Kiệm của người chơi để cấn trừ nợ ngay lập tức.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!freezelai &lt;on | off&gt;</code></td>
+                                    <td><code>!dongbanglai</code></td>
+                                    <td>Đóng băng hoặc mở lại cơ chế tự động phạt cộng +200k/ngày đối với nợ quá hạn 5 ngày.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NHÓM 3: CHỐNG CLONE & TRỪNG PHẠT -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🚫 Nhóm 3: Chống Clone Farm & Trừng Phạt Nhà Tù</h3>
+                        <div class="cmd-desc">Bật tắt chống clone, khóa clone farm và điều hành Trại Giam</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-owner">Moderation & Jail</span></div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="data-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cú Pháp Lệnh</th>
+                                    <th>Biệt Danh (Aliases)</th>
+                                    <th>Chức Năng & Cách Dùng Chi Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>!anticlone &lt;on | off&gt;</code></td>
+                                    <td><code>!batfarmclone</code>, <code>!tatfarmclone</code>, <code>!batclone</code>, <code>!tatclone</code></td>
+                                    <td>Bật hoặc tắt toàn bộ hệ thống kiểm tra và ngăn chặn clone tuồn tiền.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!camclone @user [lý_do]</code></td>
+                                    <td><code>!blockclone</code></td>
+                                    <td>Khóa tài khoản clone, chặn vĩnh viễn khỏi 20+ lệnh kiếm tiền và cược bạc.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!moclone @user</code></td>
+                                    <td><code>!unblockclone</code>, <code>!bocamclone</code></td>
+                                    <td>Mở khóa cho tài khoản bị khóa clone.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!ditu @user &lt;thời_gian&gt; [lý_do]</code></td>
+                                    <td><code>!botu</code>, <code>!giam</code>, <code>!tongtu</code></td>
+                                    <td>Tống giam người chơi vào tù theo thời gian (vd: <code>30s</code>, <code>10p</code>, <code>2h</code>, <code>1d</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!thatu @user</code></td>
+                                    <td><code>!antxa</code>, <code>!xuatvien</code></td>
+                                    <td>Thả tự do ngay lập tức cho phạm nhân đang thụ án tù.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!thahet</code></td>
+                                    <td><code>!releaseall</code></td>
+                                    <td>Đại xá thả tự do cho tất cả tù nhân trong nhà tù.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!doitag @user &lt;ConNo | Rich | none&gt;</code></td>
+                                    <td><code>!settag</code></td>
+                                    <td>Ép danh hiệu hoặc gỡ danh hiệu hiển thị biệt danh trên server.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NHÓM 4: SÒNG BẠC, KÊNH & KHẨN CẤP -->
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🎰 Nhóm 4: Điều Khiển Sòng Bạc, Chọn Kênh & Tình Huống Khẩn Cấp</h3>
+                        <div class="cmd-desc">Can thiệp tỷ lệ game, chọn kênh hoạt động, phong tỏa khẩn cấp và giftcode</div>
+                    </div>
+                    <div class="cmd-badges"><span class="tag tag-owner">Casino & System</span></div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="data-table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cú Pháp Lệnh</th>
+                                    <th>Biệt Danh (Aliases)</th>
+                                    <th>Chức Năng & Cách Dùng Chi Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>!setodds &lt;game&gt; &lt;tỷ_lệ&gt;</code></td>
+                                    <td><code>!settyle</code>, <code>!chyle</code></td>
+                                    <td>Tùy chỉnh tỷ lệ thắng cho từng trò (vd: <code>!setodds taixiu 50</code>, <code>!setodds slot 35</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!donggame &lt;tên_game&gt;</code></td>
+                                    <td><code>!khoatrochoi</code>, <code>!tattrochoi</code>, <code>!dongtrochoi</code></td>
+                                    <td>Tạm khóa 1 trò chơi casino bảo trì (người chơi không thể bấm cược).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!mogame &lt;tên_game&gt;</code></td>
+                                    <td><code>!motrochoi</code>, <code>!batgame</code></td>
+                                    <td>Mở lại trò chơi đã tạm khóa.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!forcenohu</code></td>
+                                    <td><code>!nohu</code></td>
+                                    <td>Ép máy xèng Slot nổ Hũ Jackpot ngay lập tức ở ván tiếp theo.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!chonkenh</code></td>
+                                    <td><code>!kenh</code>, <code>!setchannel</code></td>
+                                    <td>Chọn 1–5 kênh hoạt động chính thức qua Select Menu (hoặc <code>!chonkenh all</code> để mở tất cả).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!khoabot</code></td>
+                                    <td><code>!paniclock</code></td>
+                                    <td>Kích hoạt chế độ Phong Tỏa Khẩn Cấp (Panic Lock) đóng băng toàn bộ hệ thống bot.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!thongbao &lt;nội_dung&gt; [#kênh]</code></td>
+                                    <td><code>!tb</code>, <code>!announce</code></td>
+                                    <td>Phát thông báo embed sang trọng từ Chủ Sòng Bạc tới kênh chỉ định.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!taocode &lt;code&gt; &lt;tiền&gt; [số_lần]</code></td>
+                                    <td><code>!giftcode</code></td>
+                                    <td>Tạo mã Giftcode phát tiền thưởng cho người chơi nhập lệnh <code>!nhapcode</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!xoacode &lt;code&gt;</code></td>
+                                    <td><code>!delcode</code>, <code>!remcode</code></td>
+                                    <td>Xóa mã Giftcode.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!spawnboss [tên] [máu] [thưởng]</code></td>
+                                    <td><code>!goiboss</code>, <code>!taoboss</code></td>
+                                    <td>Triệu hồi Boss Thế Giới thủ công theo thông số tùy chỉnh.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!slayboss</code></td>
+                                    <td><code>!killboss</code>, <code>!tramboss</code></td>
+                                    <td>Trảm Boss Thế Giới ngay lập tức và kích hoạt chia thưởng.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!nhuongngoi @user</code></td>
+                                    <td><code>!transferowner</code></td>
+                                    <td>Chuyển giao quyền lực Owner tối thượng cho người khác.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 10: EASTER EGG ================= -->
+        <section id="sec-easteregg" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>🎭</span> PHẦN 10: EASTER EGG BÍ MẬT CỦA CHỦ SÒNG BẠC</div>
+                <span class="section-badge">SECRET EASTER EGG</span>
+            </div>
+
+            <div class="cmd-card">
+                <div class="cmd-top">
+                    <div class="cmd-title-area">
+                        <h3>🤫 Câu Thần Chú Triệu Hồi Tối Thượng</h3>
+                        <div class="cmd-desc">Easter egg độc quyền chỉ có Owner mới có thể kích hoạt</div>
+                    </div>
+                </div>
+                <div class="cmd-body" style="grid-template-columns: 1fr;">
+                    <div class="alert-box alert-danger">
+                        <span>💬</span>
+                        <div>
+                            <strong>CÂU THẦN CHÚ CHUẨN XÁC TỪNG KÝ TỰ:</strong>
+                            <br><code style="font-size: 15px; font-weight: bold; color: var(--gold);">triệu hồi con bot ngu nhất cho t</code>
+                            <br>(hoặc <code>!triệu hồi con bot ngu nhất cho t</code>)
+                        </div>
+                    </div>
+                    <ul class="step-list">
+                        <li class="step-item"><strong>Điều kiện kích hoạt:</strong> Chỉ duy nhất Owner (người nắm giữ ID trong <code>db.ownerId</code>) nhắn câu này thì bot mới phản hồi. Người dùng bình thường nhắn bot sẽ hoàn toàn ngó lơ.</li>
+                        <li class="step-item"><strong>Câu trả lời của Bot:</strong> Bot lập tức rep lại chính xác:
+                            <br><span style="font-size: 15px; font-weight: 800; color: #ef4444;">"ngu cái đ#t con mẹ mày"</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 11: BẢNG TRA CỨU 224 LỆNH ================= -->
+        <section id="sec-cheatsheet" class="section-wrap">
+            <div class="section-header">
+                <div class="section-title"><span>📑</span> PHẦN 11: BẢNG TRA CỨU TOÀN BỘ 224 LỆNH BOT TỪ A ĐẾN Z</div>
+                <span class="section-badge">MASTER CHEAT SHEET</span>
+            </div>
+
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterTable('all')">Tất Cả (224)</button>
+                <button class="filter-btn" onclick="filterTable('casino')">Casino</button>
+                <button class="filter-btn" onclick="filterTable('economy')">Kinh Tế</button>
+                <button class="filter-btn" onclick="filterTable('debt')">Trừ Nợ</button>
+                <button class="filter-btn" onclick="filterTable('crime')">Cướp & Bẻ Khóa</button>
+                <button class="filter-btn" onclick="filterTable('shop')">Shop & Kho</button>
+                <button class="filter-btn" onclick="filterTable('owner')">Owner</button>
+            </div>
+
+            <div class="data-table-wrap">
+                <table id="cheatSheetTable">
+                    <thead>
+                        <tr>
+                            <th>Tên Lệnh Chính</th>
+                            <th>Biệt Danh Phụ (Aliases)</th>
+                            <th>Phân Hệ</th>
+                            <th>Quyền Hạn</th>
+                            <th>Mô Tả Tóm Tắt</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cheatSheetBody">
+                        <!-- Sẽ được hiển thị đầy đủ -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FAB BACK TO TOP -->
+    <button id="fabTop" class="fab-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">✅ Đã sao chép lệnh!</div>
+
+    <!-- MOBILE FIXED BOTTOM NAV -->
+    <nav class="mobile-bottom-nav">
+        <a href="#sec-casino" class="bottom-nav-item">
+            <span class="icon">🎲</span>
+            <span>Casino</span>
+        </a>
+        <a href="#sec-economy" class="bottom-nav-item">
+            <span class="icon">💰</span>
+            <span>Ngân Hàng</span>
+        </a>
+        <a href="#sec-debt" class="bottom-nav-item">
+            <span class="icon">💳</span>
+            <span>Gạt Nợ</span>
+        </a>
+        <a href="#sec-owner" class="bottom-nav-item">
+            <span class="icon">👑</span>
+            <span>Owner</span>
+        </a>
+        <a href="#sec-cheatsheet" class="bottom-nav-item">
+            <span class="icon">📑</span>
+            <span>Tra 224 Lệnh</span>
+        </a>
+    </nav>
+
+    <!-- ================= SCRIPT LOGIC ================= -->
+    <script>
+        // Danh mục đầy đủ 224 lệnh bot
+        const ALL_COMMANDS_DATA = [
+
+            // CASINO
+            { cmd: "taixiu", aliases: "tx", cat: "casino", perm: "Tất cả", desc: "Đổ 3 xúc xắc Tài/Xỉu ăn x2.0, bão 3% hoàn tiền 10%" },
+            { cmd: "baucua", aliases: "bc", cat: "casino", perm: "Tất cả", desc: "Lắc 6 linh vật Bầu Cua Tôm Cá ăn x2 - x4" },
+            { cmd: "slot", aliases: "quay", cat: "casino", perm: "Tất cả", desc: "Máy xèng 3 ô: Cặp đôi 35% x1.5, Triple 3.5% x5, Jackpot 0.8% x10" },
+            { cmd: "coinflip", aliases: "cf", cat: "casino", perm: "Tất cả", desc: "Tung đồng xu Sấp/Ngửa ăn x2.0 chuẩn 49%" },
+            { cmd: "vongquay", aliases: "vq", cat: "casino", perm: "Tất cả", desc: "Vòng quay 7 ô may mắn, ô x1.5 chuẩn 28%, Jackpot x10" },
+            { cmd: "domin", aliases: "mines, min", cat: "casino", perm: "Tất cả", desc: "Dò mìn ma trận 20 ô, tự chọn 1-10 mìn, tự chốt lời" },
+            { cmd: "coquay", aliases: "roulette, sungluc", cat: "casino", perm: "Tất cả", desc: "Cò quay Nga 6 ổ đạn: Solo Bot hoặc phòng 2-6 người ăn trọn Pot" },
+            { cmd: "xidach", aliases: "xd, blackjack", cat: "casino", perm: "Tất cả", desc: "Bài Xì Dách 21 điểm với Nhà Cái Bot hoặc nhiều người chơi" },
+            { cmd: "tienlen", aliases: "tlmn", cat: "casino", perm: "Tất cả", desc: "Bài Tiến Lên Miền Nam 52 lá solo Bot hoặc 2-4 người" },
+            { cmd: "duangua", aliases: "horse, chaydua", cat: "casino", perm: "Tất cả", desc: "Đua 5 chiến mã ăn x3.0 và săn thưởng Hũ Jackpot tích lũy" },
+
+            // ECONOMY
+            { cmd: "tien", aliases: "bal, vi, money, checkwallet", cat: "economy", perm: "Tất cả", desc: "Xem ví tiền mặt, bank, nợ, danh hiệu và thống kê cược" },
+            { cmd: "daily", aliases: "diemdanh", cat: "economy", perm: "Tất cả", desc: "Điểm danh nhận trợ cấp 50k-200k + thưởng streak ngày" },
+            { cmd: "pay", aliases: "chuyentien, chuyenkhoan", cat: "economy", perm: "Tất cả", desc: "Chuyển tiền mặt cho người khác (chống clone, cấm nợ)" },
+            { cmd: "guitietkiem", aliases: "gtk", cat: "economy", perm: "Tất cả", desc: "Gửi tiền tiết kiệm hưởng lãi 2%/ngày chốt lúc 00:00" },
+            { cmd: "ruttietkiem", aliases: "rtk", cat: "economy", perm: "Tất cả", desc: "Rút tiền từ sổ tiết kiệm về ví mặt 24/7 không phí" },
+            { cmd: "vaytien", aliases: "vay", cat: "economy", perm: "Tất cả", desc: "Vay ngân hàng đen tối đa 10M, phí 5%, quá 5 ngày phạt +200k/ngày" },
+            { cmd: "trano", aliases: "tra", cat: "economy", perm: "Tất cả", desc: "Trả nợ ngân hàng bằng tiền mặt" },
+            { cmd: "no", aliases: "checkdebt", cat: "economy", perm: "Tất cả", desc: "Tra cứu sổ nợ chi tiết, thời hạn và cảnh báo phạt nợ" },
+            { cmd: "top", aliases: "bxh", cat: "economy", perm: "Tất cả", desc: "Bảng xếp hạng Top 10 Đại Gia giàu nhất server" },
+            { cmd: "lichsu", aliases: "checkhistory, ls, lichsugiaodich", cat: "economy", perm: "Tất cả", desc: "Xem 10 biến động số dư tài chính gần nhất" },
+            { cmd: "nhapcode", aliases: "usecode", cat: "economy", perm: "Tất cả", desc: "Nhập Giftcode nhận tiền thưởng từ Owner" },
+
+            // DEBT JOBS
+            { cmd: "cotoilet", aliases: "chatoilet", cat: "debt", perm: "Tất cả", desc: "Cọ bồn cầu trừ -100k đến -300k nợ (CD 42p, trợ cấp 10k)" },
+            { cmd: "phucvu", aliases: "bartender, phache", cat: "debt", perm: "Tất cả", desc: "Pha chế phòng VIP trừ -500k đến -1M nợ + tiền bo (CD 42p)" },
+            { cmd: "bocvac", aliases: "cuuli, vachang", cat: "debt", perm: "Tất cả", desc: "Bốc vác cảng đêm trừ -150k đến -1.5M+ nợ (CD 42p)" },
+            { cmd: "doinothue", aliases: "doino", cat: "debt", perm: "Tất cả", desc: "Đòi nợ thuê cho sòng trừ -600k đến -1.5M nợ (CD 42p)" },
+            { cmd: "ganno", aliases: "banthan", cat: "debt", perm: "Tất cả", desc: "Bán máu/thận trừ ngay -2M đến -5M nợ (CD 12h, debuff 12h)" },
+
+            // LABOR & CRIME
+            { cmd: "vechai", aliases: "nhatvechai", cat: "crime", perm: "Tất cả", desc: "Nhặt ve chai kiếm 10k-30k (CD 5p, max 15 lần/ngày)" },
+            { cmd: "lamviec", aliases: "work, laodong", cat: "crime", perm: "Tất cả", desc: "Lao động chân chính nhận 50k-200k lương (CD 2h)" },
+            { cmd: "antrom", aliases: "trom, rob", cat: "crime", perm: "Tất cả", desc: "Móc túi 10%-40% ví nạn nhân, tỷ lệ 45%-60%" },
+            { cmd: "tu", aliases: "ditu, bietgiam", cat: "crime", perm: "Tất cả", desc: "Xem tình trạng thụ án và án tích trong nhà tù" },
+            { cmd: "caitao", aliases: "laodongtu", cat: "crime", perm: "Tất cả", desc: "Làm lao động công ích trong tù (15s/việc) để được tự do" },
+            { cmd: "truyna", aliases: "bounty", cat: "crime", perm: "Tất cả", desc: "Treo tiền thưởng truy nã người chơi khác" },
+
+            // HEIST & VAULT
+            { cmd: "cuopbank", aliases: "bankheist, cuopnh", cat: "crime", perm: "Tất cả", desc: "Vụ Cướp Thế Kỷ 100M (5 role, tỷ lệ thoát 18%, ăn 20M/người)" },
+            { cmd: "bekhoa", aliases: "moket, phaoket", cat: "crime", perm: "Tất cả", desc: "Bẻ 3 cấp độ két sắt (Tạp Hóa, Tiệm Vàng, Diamond Guard)" },
+            { cmd: "trathu", aliases: "baothu, revenge", cat: "crime", perm: "Tất cả", desc: "Phục kích kẻ trộm làm rơi CCCD đòi lại 100% két + 300k" },
+
+            // SHOP
+            { cmd: "shop", aliases: "cuahang", cat: "shop", perm: "Tất cả", desc: "Xem danh mục 7 vật phẩm chuyên dụng đầu tư và bảo hộ" },
+            { cmd: "mua", aliases: "buy", cat: "shop", perm: "Tất cả", desc: "Mua vật phẩm từ #1 đến #7" },
+            { cmd: "kho", aliases: "inv, inventory", cat: "shop", perm: "Tất cả", desc: "Xem túi đồ trang bị và độ bền bộ đồ nghề bẻ khóa" },
+            { cmd: "sudung", aliases: "use", cat: "shop", perm: "Tất cả", desc: "Sử dụng hoặc kiểm tra công dụng vật phẩm trong kho" },
+            { cmd: "bandoket", aliases: "thanhly", cat: "shop", perm: "Tất cả", desc: "Bán thanh lý bộ đồ nghề cũ thu lại 100k ve chai" },
+
+            // PVP & BOSS
+            { cmd: "thach", aliases: "thachdau, pvp", cat: "casino", perm: "Tất cả", desc: "Thách đấu 1v1 người chơi khác mọi game casino (phế 5%)" },
+            { cmd: "boss", aliases: "slayboss", cat: "casino", perm: "Tất cả", desc: "Đột kích đánh Boss Thế Giới chia thưởng theo % sát thương" },
+
+            // BLACK MARKET (ĐÃ BÃI BỎ)
+            { cmd: "bocbatho", aliases: "vaychoden, vayden, tindungden", cat: "debt", perm: "Tất cả", desc: "Thông báo bãi bỏ cơ chế Bát Họ, hướng dẫn vay ngân hàng" },
+            { cmd: "trabatho", aliases: "trachoden, traden", cat: "debt", perm: "Tất cả", desc: "Thông báo bãi bỏ cơ chế Bát Họ, đã xóa sạch nợ" },
+
+            // OWNER COMMANDS (Đại diện tiêu biểu trong 125 lệnh)
+            { cmd: "owner", aliases: "claimowner", cat: "owner", perm: "Owner", desc: "Đăng nhập quyền lực tối thượng Owner qua mật khẩu" },
+            { cmd: "congtien", aliases: "themno", cat: "owner", perm: "Owner", desc: "Cộng tiền mặt trực tiếp vào ví người chơi" },
+            { cmd: "trutien", aliases: "phattien", cat: "owner", perm: "Owner", desc: "Trừ tiền mặt trong ví người chơi" },
+            { cmd: "tangno", aliases: "epno, congno, adddebt", cat: "owner", perm: "Owner", desc: "Tăng nợ cho người chơi kèm lý do" },
+            { cmd: "giamno", aliases: "trueno, subdebt", cat: "owner", perm: "Owner", desc: "Giảm nợ cho người chơi" },
+            { cmd: "setno", aliases: "setdebt", cat: "owner", perm: "Owner", desc: "Thiết lập chính xác số nợ ngân hàng" },
+            { cmd: "xoano", aliases: "chono, cleardebt", cat: "owner", perm: "Owner", desc: "Xóa sạch toàn bộ nợ cho 1 người chơi" },
+            { cmd: "masscleardebt", aliases: "anxano, daixano", cat: "owner", perm: "Owner", desc: "Đại xá xóa sạch nợ cho toàn bộ server" },
+            { cmd: "anticlone", aliases: "farmclone, batclone, tatclone", cat: "owner", perm: "Owner", desc: "Bật hoặc tắt hệ thống chống clone farm tiền" },
+            { cmd: "camclone", aliases: "blockclone", cat: "owner", perm: "Owner", desc: "Khóa tài khoản clone, chặn 20+ lệnh kiếm tiền" },
+            { cmd: "moclone", aliases: "unblockclone, bocamclone", cat: "owner", perm: "Owner", desc: "Mở khóa tài khoản clone" },
+            { cmd: "ditu", aliases: "botu, giam, tongtu", cat: "owner", perm: "Owner", desc: "Tống giam người chơi vào ngục theo thời gian" },
+            { cmd: "thatu", aliases: "antxa, xuatvien", cat: "owner", perm: "Owner", desc: "Thả tự do ngay lập tức cho phạm nhân" },
+            { cmd: "thahet", aliases: "releaseall", cat: "owner", perm: "Owner", desc: "Đại xá thả tất cả tù nhân trong ngục" },
+            { cmd: "doitag", aliases: "settag", cat: "owner", perm: "Owner", desc: "Ép danh hiệu [Con Nợ], [Rich] hoặc gỡ bỏ [none]" },
+            { cmd: "setodds", aliases: "settyle, chyle", cat: "owner", perm: "Owner", desc: "Tùy chỉnh tỷ lệ thắng cho từng trò chơi" },
+            { cmd: "donggame", aliases: "khoatrochoi, tattrochoi", cat: "owner", perm: "Owner", desc: "Tạm khóa 1 trò chơi casino bảo trì" },
+            { cmd: "mogame", aliases: "motrochoi, batgame", cat: "owner", perm: "Owner", desc: "Mở lại trò chơi đã tạm khóa" },
+            { cmd: "forcenohu", aliases: "nohu", cat: "owner", perm: "Owner", desc: "Ép máy xèng nổ Hũ Jackpot ván tiếp theo" },
+            { cmd: "chonkenh", aliases: "kenh, setchannel", cat: "owner", perm: "Owner", desc: "Chọn 1-5 kênh cho bot hoạt động qua Menu" },
+            { cmd: "khoabot", aliases: "paniclock", cat: "owner", perm: "Owner", desc: "Kích hoạt phong tỏa khẩn cấp toàn hệ thống" },
+            { cmd: "thongbao", aliases: "tb, announce", cat: "owner", perm: "Owner", desc: "Phát thông báo embed sang trọng tới kênh chỉ định" },
+            { cmd: "taocode", aliases: "giftcode", cat: "owner", perm: "Owner", desc: "Tạo Giftcode phát tiền thưởng cho người chơi" },
+            { cmd: "xoacode", aliases: "delcode, remcode", cat: "owner", perm: "Owner", desc: "Xóa mã Giftcode" },
+            { cmd: "spawnboss", aliases: "goiboss, taoboss", cat: "owner", perm: "Owner", desc: "Triệu hồi Boss Thế Giới thủ công" },
+            { cmd: "slayboss", aliases: "killboss, tramboss", cat: "owner", perm: "Owner", desc: "Trảm Boss Thế Giới ngay lập tức" },
+            { cmd: "nhuongngoi", aliases: "transferowner", cat: "owner", perm: "Owner", desc: "Chuyển giao quyền lực Owner cho người khác" }
+        
+        ];
+
+        // Toast feedback
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.textContent = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // Fast copy to clipboard
+        function copyCmd(cmd) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(cmd).then(() => {
+                    showToast('✅ Đã chép: ' + cmd);
+                }).catch(() => {
+                    fallbackCopy(cmd);
+                });
+            } else {
+                fallbackCopy(cmd);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('✅ Đã chép: ' + text);
+        }
+
+        // View mode switch (Auto, Desktop, Mobile)
+        function switchViewMode(mode) {
+            document.body.classList.remove('force-mobile', 'force-desktop');
+            ['btnModeAuto', 'btnModeDesktop', 'btnModeMobile', 'btnMobAuto', 'btnMobDesktop', 'btnMobMobile'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.classList.remove('active');
+            });
+
+            if (mode === 'mobile') {
+                document.body.classList.add('force-mobile');
+                document.getElementById('btnModeMobile')?.classList.add('active');
+                document.getElementById('btnMobMobile')?.classList.add('active');
+            } else if (mode === 'desktop') {
+                document.body.classList.add('force-desktop');
+                document.getElementById('btnModeDesktop')?.classList.add('active');
+                document.getElementById('btnMobDesktop')?.classList.add('active');
+            } else {
+                document.getElementById('btnModeAuto')?.classList.add('active');
+                document.getElementById('btnMobAuto')?.classList.add('active');
+            }
+            localStorage.setItem('doc_view_mode', mode);
+        }
+
+        // Restore view mode preference
+        const savedMode = localStorage.getItem('doc_view_mode');
+        if (savedMode && ['auto', 'desktop', 'mobile'].includes(savedMode)) {
+            switchViewMode(savedMode);
+        }
+
+        // Setup cheat sheet dual view (Desktop table + Mobile cards)
+        let currentFilter = 'all';
+        let currentKeyword = '';
+
+        function renderCheatSheet() {
+            const tbody = document.getElementById('cheatSheetBody');
+            const mobileCardsContainer = document.getElementById('mobileCheatCardsList');
+            if (!tbody || !mobileCardsContainer) return;
+
+            tbody.innerHTML = '';
+            mobileCardsContainer.innerHTML = '';
+
+            const kw = currentKeyword.toLowerCase().trim();
+            const filtered = ALL_COMMANDS_DATA.filter(item => {
+                const matchCat = currentFilter === 'all' || item.cat === currentFilter;
+                const matchKw = !kw || item.cmd.includes(kw) || (item.aliases && item.aliases.includes(kw)) || item.desc.toLowerCase().includes(kw);
+                return matchCat && matchKw;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px; color:var(--text-muted);">Không tìm thấy lệnh phù hợp</td></tr>';
+                mobileCardsContainer.innerHTML = '<div style="text-align:center; padding:24px; color:var(--text-muted);">Không tìm thấy lệnh phù hợp</div>';
+                return;
+            }
+
+            // Render Desktop Rows
+            filtered.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = 
+                    '<td><strong style="color:var(--gold);">!' + item.cmd + '</strong></td>' +
+                    '<td class="cell-mono">' + (item.aliases ? '!' + item.aliases.replace(/, /g, ', !') : '-') + '</td>' +
+                    '<td><span class="cell-badge tag-' + item.cat + '">' + item.cat.toUpperCase() + '</span></td>' +
+                    '<td class="cell-mono">' + item.perm + '</td>' +
+                    '<td>' + item.desc + '</td>';
+                tbody.appendChild(tr);
+
+                // Render Mobile Card
+                const card = document.createElement('div');
+                card.className = 'mobile-cheat-card';
+                card.innerHTML = 
+                    '<div class="mobile-cheat-header">' +
+                        '<span class="mobile-cheat-cmd">!' + item.cmd + '</span>' +
+                        '<div class="mobile-cheat-badges">' +
+                            '<span class="cell-badge tag-' + item.cat + '">' + item.cat.toUpperCase() + '</span>' +
+                            '<button class="mobile-cheat-copy" onclick="copyCmd(\'!' + item.cmd + '\')">Copy</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="mobile-cheat-aliases">' + (item.aliases ? 'Biệt danh: !' + item.aliases.replace(/, /g, ', !') : 'Biệt danh: Không có') + '</div>' +
+                    '<div class="mobile-cheat-desc">' + item.desc + '</div>';
+                mobileCardsContainer.appendChild(card);
+            });
+        }
+
+        function filterTable(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            renderCheatSheet();
+        }
+
+        // Synchronize search inputs (Desktop & Mobile)
+        function handleSearch(val) {
+            currentKeyword = val;
+            const dInput = document.getElementById('desktopSearchInput');
+            const mInput = document.getElementById('mobileSearchInput');
+            const mClear = document.getElementById('mobileSearchClear');
+
+            if (dInput && dInput.value !== val) dInput.value = val;
+            if (mInput && mInput.value !== val) mInput.value = val;
+            if (mClear) mClear.style.display = val ? 'block' : 'none';
+
+            renderCheatSheet();
+        }
+
+        document.getElementById('desktopSearchInput')?.addEventListener('input', (e) => handleSearch(e.target.value));
+        document.getElementById('mobileSearchInput')?.addEventListener('input', (e) => handleSearch(e.target.value));
+        document.getElementById('mobileSearchClear')?.addEventListener('click', () => handleSearch(''));
+
+        // Prepare Cheat Sheet containers
+        (function setupCheatContainers() {
+            const tableWrap = document.querySelector('.data-table-wrap table#cheatSheetTable')?.parentElement;
+            if (tableWrap) {
+                tableWrap.id = 'cheatSheetTableWrap';
+                // Add mobile cards wrapper right after table
+                const mobileWrap = document.createElement('div');
+                mobileWrap.id = 'mobileCheatCardsWrap';
+                mobileWrap.innerHTML = '<div id="mobileCheatCardsList"></div>';
+                tableWrap.parentNode.insertBefore(mobileWrap, tableWrap.nextSibling);
+            }
+        })();
+
+        // Scroll listener for FAB
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('fabTop');
+            if (window.scrollY > 300) {
+                fab.style.display = 'flex';
+            } else {
+                fab.style.display = 'none';
+            }
+        });
+
+        // Add swipe hint on all tables on small screens
+        document.querySelectorAll('.data-table-wrap').forEach(wrap => {
+            const hint = document.createElement('div');
+            hint.className = 'table-swipe-hint';
+            hint.textContent = '👈 Vuốt ngang để xem toàn bộ bảng 👉';
+            wrap.parentNode.insertBefore(hint, wrap);
+        });
+
+        // Replace desktop copy buttons to use unified copyCmd
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            const onclickText = btn.getAttribute('onclick');
+            if (onclickText && onclickText.includes("navigator.clipboard.writeText")) {
+                const match = onclickText.match(/writeText('([^']+)')/);
+                if (match) {
+                    btn.setAttribute('onclick', "copyCmd('" + match[1] + "')");
+                }
+            }
+        });
+
+        // Initial render
+        renderCheatSheet();
+    </script>
+</body>
+</html>
